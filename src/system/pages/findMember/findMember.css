@@ -1,0 +1,528 @@
+@media (min-width:800px) {
+    .find-member {
+        background-color: black;
+        padding-bottom: 150px;
+        color: white;
+        margin-left: 60px;
+    }
+
+    .find-member_header-search-input {
+        padding: 18px;
+        font-size: 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        width: 89vw;
+    }
+
+    .find-member_header-search-input:focus {
+        outline: none;
+    }
+
+    .find-member_header_search-container {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgb(56, 56, 56);
+        padding-left: 15px;
+    }
+
+    .find-member_header_search-ico {
+        font-size: 20px;
+        color: rgb(182, 182, 182);
+        position: relative;
+        top: 1px;
+    }
+
+    .find-member_header_search-delete-ico {
+        font-size: 27px;
+        color: rgb(182, 182, 182);
+        position: relative;
+        top: 1px;
+        cursor: pointer;
+    }
+
+    .find-member_header_search-delete-ico:hover {
+        color: red;
+    }
+
+    .find-member_main {
+        margin: 55px;
+    }
+
+    .find-member_main_header {
+        font-weight: bold;
+        font-size: 27px;
+        color: #ffbb00;
+    }
+
+    .find-member_main-filter-optoins {
+        margin-top: 20px;
+    }
+
+    .find-member_main-filter-option {
+        padding: 5px 13px 5px 13px;
+        cursor: pointer;
+        margin: 0 10px 0 0;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: .5px;
+        border-radius: 25px;
+        width: fit-content;
+        margin-bottom: 10px;
+        border: none;
+
+    }
+
+    .find-member_main-filter-option:hover {
+        opacity: .8;
+    }
+
+    .find-member_main-filter-option__filter {
+        background-color: transparent;
+        color: white;
+        font-size: 20px;
+        margin-left: -12px;
+        margin-bottom: 6px;
+        position: relative;
+    }
+
+    .find-member_main_filter-ico {
+        font-size: 28px;
+        color: white;
+        position: relative;
+        top: 8px;
+
+    }
+
+    .find-member_main-filter-ico__active {
+        font-size: 16px;
+        color: black;
+        margin-right: 5px;
+        position: relative;
+        top: 2px;
+        right: 2px;
+    }
+
+    .find-member_main-filter-option__all {
+        background-color: rgb(165, 224, 228);
+    }
+
+    .find-member_main-filter-option__exp {
+        background-color: #ff0000;
+        color: white;
+    }
+
+    .find-member_main-filter-option__paid {
+        background-color: rgb(0, 223, 111);
+    }
+
+    .find-member_main-filter-option__new {
+        background-color: #ffbb00;
+    }
+
+    .find-member_main-filter-option__male {
+        background-color: rgb(0, 110, 255);
+        color: white;
+    }
+
+    .find-member_main-filter-option__female {
+        background-color: pink;
+    }
+
+
+    .find-member_main-total {
+        font-size: 20px;
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.800);
+
+    }
+
+    .find-member_main-total span {
+        color: white !important;
+        font-size: 22px;
+        margin-left: 2px;
+    }
+
+    .find-member_member-list {
+        margin-top: 5vh;
+    }
+
+    .find-member_member-list_header {
+        display: grid;
+        grid-template-columns: 250px 230px 235px 165px 150px;
+        opacity: .8;
+    }
+
+    .find-member_member-list li {
+        list-style: none;
+    }
+
+    .find-member_member-list-container {
+        width: 90vw;
+    }
+
+    .find-member_members-mapped {
+        margin-top: 35px;
+
+    }
+
+    .find-member_main_form_img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .find-member-ul-li {
+        display: grid;
+        grid-template-columns: 235px 215px 220px 150px 200px 50px;
+        gap: 15px;
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.800);
+        border-bottom: 1px solid rgb(29, 28, 28);
+        padding-bottom: 15px;
+        position: relative;
+    }
+
+    .find-member-ul-li_member-ifo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .acit-find-me {
+        color: rgb(0, 224, 101);
+        font-size: 20px;
+        position: relati ve;
+        top: 4px;
+        margin-right: 7px;
+    }
+
+    .find-member-ul-li_buton-option {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        color: white;
+        transform: rotate(90deg);
+    }
+
+    .find-member_members-list-more-options {
+        background-color: white;
+        color: black;
+        width: fit-content;
+        border-radius: 25px 25px 0px 25px;
+        overflow: hidden;
+        height: 150px;
+        position: absolute;
+        right: 122px;
+        bottom: 37px;
+        z-index: 1;
+        box-shadow: 0 0 10px 1px rgb(112, 108, 108);
+
+    }
+
+    .find-member_members-list-more-options .find-member_more_details_link {
+        color: black;
+        text-decoration: none;
+        font-size: 17px;
+        display: flex;
+        gap: 15px;
+        font-weight: bold;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        /* border-bottom: 2px solid rgba(97, 97, 97, 0.267); */
+        padding: 15px;
+        cursor: pointer;
+    }
+
+    .find-member_more-detailes-remove:hover {
+        background-color: rgb(255, 0, 0);
+        color: white;
+    }
+
+    .find-member_more-detailes_chk-in:hover {
+        background-color: rgb(57, 255, 139);
+        color: white;
+
+    }
+
+    .find-member_more-detailes-settings:hover {
+        background-color: #ffbb00;
+        color: white;
+
+    }
+
+}
+
+@media (max-width:799px) {
+    .find-member_header{
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        background-color: black;
+        z-index: 2;
+    }
+    .find-member {
+        padding-top: 60px;
+        min-height: 100vh;
+        background-color: black;
+        padding-bottom: 50px;
+        color: white;
+    }
+
+    .find-member_header-search-input {
+        padding: 18px;
+        font-size: 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        width: 60vw;
+    }
+
+    .find-member_header-search-input:focus {
+        outline: none;
+    }
+
+    .find-member_header_search-container {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid  rgb(65, 65, 65);
+        padding-left: 15px;
+    }
+
+    .find-member_header_search-ico {
+        font-size: 20px;
+        color: rgb(182, 182, 182);
+        position: relative;
+        top: 1px;
+    }
+
+    .find-member_header_search-delete-ico {
+        font-size: 27px;
+        color: rgb(182, 182, 182);
+        position: relative;
+        top: 1px;
+        cursor: pointer;
+    }
+
+    .find-member_header_search-delete-ico:active {
+        color: red;
+    }
+
+    .find-member_main {
+        margin: 20px;
+    }
+
+    .find-member_main_header {
+        font-weight: bold;
+        font-size: 24px;
+        color: #ffbb00;
+    }
+
+    .find-member_main-filter-optoins {
+        margin-top: 20px;
+    }
+
+    .find-member_main-filter-option {
+        padding: 5px 17px 5px 17px;
+        cursor: pointer;
+        margin: 0 10px 10px 0;
+        font-size: 13px;
+        height: 33px;
+        font-weight: bold;
+        letter-spacing: .5px;
+        border-radius: 25px;
+        width: fit-content;
+        border: none;
+
+    }
+
+    .find-member_main_filter_options_btns {
+        margin-top: 10px;
+    }
+
+    .find-member_main-filter-option:hover {
+        opacity: .8;
+    }
+
+    .find-member_main-filter-option__filter {
+        background-color: transparent;
+        color: white;
+        font-size: 20px;
+        margin-left: -15px;
+        position: relative;
+    }
+
+    .find-member_main_filter-ico {
+        font-size: 28px;
+        color: white;
+        position: relative;
+        top: 8px;
+
+    }
+
+    .find-member_main-filter-ico__active {
+        font-size: 13px;
+        color: black;
+        margin-right: 5px;
+        position: relative;
+        top: 2px;
+        right: 2px;
+    }
+
+    .find-member_main-filter-option__all {
+        background-color: rgb(165, 224, 228);
+    }
+
+    .find-member_main-filter-option__exp {
+        background-color: #ff0000;
+        color: white;
+    }
+
+    .find-member_main-filter-option__paid {
+        background-color: rgb(0, 223, 111);
+    }
+
+    .find-member_main-filter-option__new {
+        background-color: #ffbb00;
+    }
+
+    .find-member_main-filter-option__male {
+        background-color: rgb(0, 110, 255);
+        color: white;
+    }
+
+    .find-member_main-filter-option__female {
+        background-color: pink;
+    }
+
+
+    .find-member_main-total {
+        font-size: 20px;
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.800);
+
+    }
+
+    .find-member_main-total span {
+        color: white !important;
+        font-size: 22px;
+        margin-left: 2px;
+    }
+
+    .find-member_member-list {
+        margin-top: 5vh;
+        font-size: 12px;
+    }
+
+
+
+    .find-member_member-list li {
+        list-style: none;
+    }
+
+    .find-member_member-list-container {
+        width: 93vw;
+        overflow: scroll;
+    }
+
+    .find-member_members-mapped {
+        margin-top: 35px;
+
+    }
+
+    .find-member_main_form_img {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+    }
+    .find-member_member-list_header {
+        width: fit-content;
+
+        display: grid;
+        grid-template-columns: 160px 150px 150px 100px 120px 50px ;
+        opacity: .8;
+    }
+
+    .find-member-ul-li {
+        width: fit-content;
+        display: grid;
+        grid-template-columns: 160px 150px 150px 100px 120px 50px;
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.800);
+        border-bottom: 1px solid rgb(29, 28, 28);
+        padding-bottom: 15px;
+        position: relative;
+        font-size: 10px;
+    }
+
+    .find-member-ul-li_member-ifo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .acit-find-me {
+        color: rgb(0, 224, 101);
+        font-size: 15px;
+        position: relative;
+        top: 4px;
+        margin-right: 7px;
+    }
+
+    .find-member-ul-li_buton-option {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        color: white;
+        transform: rotate(90deg);
+    }
+
+    .find-member_members-list-more-options {
+        background-color: white;
+        color: black;
+        width: fit-content;
+        border-radius:  25px 0px 25px  25px ;
+        overflow: hidden;
+        height: 150px;
+        position: absolute;
+        right: 32px;
+        top: 25px;
+        z-index: 1;
+        box-shadow: 0 0 10px 1px rgb(112, 108, 108);
+
+    }
+
+    .find-member_members-list-more-options .find-member_more_details_link {
+        color: black;
+        text-decoration: none;
+        font-size: 14px;
+        display: flex;
+        gap: 15px;
+        font-weight: bold;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        /* border-bottom: 2px solid rgba(97, 97, 97, 0.267); */
+        padding: 15px;
+        cursor: pointer;
+    }
+
+    .find-member_more-detailes-remove:active {
+        background-color: rgb(255, 0, 0);
+        color: white;
+    }
+
+    .find-member_more-detailes_chk-in:active {
+        background-color: rgb(57, 255, 139);
+        color: white;
+
+    }
+
+    .find-member_more-detailes-settings:active {
+        background-color: #ffbb00;
+        color: white;
+
+    }
+
+}

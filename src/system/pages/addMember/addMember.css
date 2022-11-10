@@ -1,0 +1,308 @@
+@media (min-width:800px) {
+    .add-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgb(0, 0, 0);
+        color: white;
+
+    }
+
+
+    .add-member_header {
+        text-align: center;
+        position: relative;
+        top: 25px;
+    }
+
+    .add-member_main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        justify-content: center;
+    }
+
+    .add-member_main_form {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+    }
+
+    .add-member_main_form_mid {
+        font-size: 18px;
+        /* color: rgb( ; */
+        padding-left: 5px;
+        margin-bottom: 30px;
+        font-weight: 1;
+
+    }
+
+    .add-member_main_form_img {
+        width: 200px;
+        height: 200px;
+        border: 4px solid #ffffff;
+        ;
+        border-radius: 50%;
+    }
+
+    .add-member_main_form_inputs {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-member_main_form_inputs label {
+        font-weight: bold;
+        font-size: 15px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+    }
+
+    .add-member_main_form_inputs input {
+        font-size: 17px;
+        background-color: rgb(0, 0, 0);
+        padding: 5px 5px 2px 5px;
+        color: white;
+        border: none;
+        border-bottom: 1px solid rgb(219, 219, 219);
+        margin-bottom: 40px;
+    }
+
+    .add-member_main_form_inputs input::placeholder {
+        color: rgba(73, 73, 73, 0.603);
+        font-weight: 1;
+        opacity: 0;
+    }
+
+    .add-member_main_form_inputs input:focus {
+        outline: none;
+        border-bottom: 2px solid #ffbb00;
+    }
+
+    .add-member_main_form_btn {
+        background-color: #ffbb00;
+        border: none;
+        padding: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 25px;
+        border-radius: 25px;
+        top: 5vh;
+        position: relative;
+        color: white;
+    }
+
+    .add-member_main_form_btn:hover {
+        opacity: .8;
+    }
+
+    .add-member_photo-sectoin {
+        position: relative;
+        height: 250px;
+        width: 250px;
+    }
+
+    .add-member_change-photo_ico {
+        position: absolute;
+        bottom: 45px;
+        left: 145px;
+        border-radius: 50%;
+        background-color: white;
+        color: black;
+        font-size: 20px;
+        padding: 7px;
+        border: 2px solid rgb(0, 0, 0);
+        cursor: pointer;
+    }
+
+    .add-member_change-photo-input {
+        position: absolute;
+        bottom: 45px;
+        left: 145px;
+        width: 35px;
+        border-radius: 50%;
+        height: 35px;
+        opacity: .001;
+        cursor: pointer;
+        z-index: 2;
+
+    }
+
+    .add-member_main_form-error,
+    .add-member_main_form-msg {
+        font-weight: bold;
+        font-size: 17px;
+        margin-top: 50px;
+        text-align: center;
+        margin-left: -40px;
+    }
+
+    .add-member_main_form-error {
+        color: red;
+    }
+
+    .add-member_main_form-msg {
+        color: rgb(0, 224, 86);
+    }
+
+}
+
+@media (max-width:799px) {
+    .add-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgb(0, 0, 0);
+        color: white;
+
+    }
+
+    .add-member_header {
+        text-align: center;
+        position: relative;
+        top: 20px;
+        font-size: 20px;
+    }
+
+    .add-member_main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+
+        margin-top: 60px;
+        justify-content: center;
+    }
+
+    .add-member_main_form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .add-member_main_form_mid {
+        font-size: 15px;
+        /* color: rgb( ; */
+        padding-left: 5px;
+        margin-bottom: 30px;
+        font-weight: 1;
+
+    }
+
+    .add-member_main_form_img {
+        width: 125px;
+        height: 125px;
+        display: block;
+        margin: auto;
+        border: 4px solid #ffffff;
+        border-radius: 50%;
+    }
+
+    .add-member_main_form_inputs {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-member_main_form_inputs label {
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+    }
+
+    .add-member_main_form_inputs input {
+        font-size: 14px;
+        background-color: rgb(0, 0, 0);
+        padding: 5px 5px 2px 5px;
+        color: white;
+        border: none;
+        border-bottom: 1px solid rgb(219, 219, 219);
+        margin-bottom: 20px;
+    }
+
+    .add-member_main_form_inputs input::placeholder {
+        color: rgba(73, 73, 73, 0.603);
+        font-weight: 1;
+        opacity: 0;
+    }
+
+    .add-member_main_form_inputs input:focus {
+        outline: none;
+        border-bottom: 2px solid #ffbb00;
+    }
+
+    .add-member_main_form_btn {
+        background-color: #ffbb00;
+        border: none;
+        padding: 7px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 25px;
+        top: 5vh;
+        position: relative;
+        color: white;
+    }
+
+    .add-member_main_form_btn:hover {
+        opacity: .8;
+    }
+
+    .add-member_photo-sectoin {
+        position: relative;
+        height: 125px;
+        width: 125px;
+        margin-bottom: 50px;
+    }
+
+    .add-member_change-photo_ico {
+        position: absolute;
+        bottom: -20px;
+        left: 85px;
+        border-radius: 50%;
+        background-color: white;
+        color: black;
+        font-size: 20px;
+        padding: 7px;
+        border: 2px solid rgb(0, 0, 0);
+        cursor: pointer;
+    }
+
+    .add-member_change-photo-input {
+        position: absolute;
+        bottom: 45px;
+        left: 145px;
+        width: 35px;
+        border-radius: 50%;
+        height: 35px;
+        opacity: .001;
+        cursor: pointer;
+        z-index: 2;
+
+    }
+
+    .add-member_main_form-error,
+    .add-member_main_form-msg {
+        font-weight: bold;
+        font-size: 17px;
+        margin-top: 50px;
+        text-align: center;
+        margin-left: -40px;
+    }
+
+    .add-member_main_form-error {
+        color: red;
+    }
+
+    .add-member_main_form-msg {
+        color: rgb(0, 224, 86);
+    }
+
+}
