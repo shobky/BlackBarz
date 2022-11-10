@@ -24,9 +24,9 @@ const Home = () => {
                 <Link className='nav_link'><IoSettingsSharp /></Link>
                 {/* <Link className='nav_link'><HiHome /></Link>[] */}
                 <Link className='nav_link'><RiUserFill /></Link>
-                <Link to='/admin.dashboard' className='nav_link'><MdSpaceDashboard /></Link>
+                <Link to='/dashboard' className='nav_link'><MdSpaceDashboard /></Link>
             </nav>
-            <HiMenuAlt3 className='nav_menu-ico' />
+            <Link to='/dashboard'> <HiMenuAlt3 className='nav_menu-ico' /></Link>
             <header>
                 <h1 className='home_header_logo'>BLACK <span>BARZ</span></h1>
                 <p className='home_header-slogan'>Health Fitnes Club</p>
