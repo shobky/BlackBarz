@@ -1,0 +1,83 @@
+.dashboard {
+    background-color: black;
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+}
+
+.dashboard_content {
+    padding: 60px 150px;
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: -30px;
+
+}
+
+.dashboard_admin-photo {
+    width: 200;
+    margin: 100px;
+}
+
+
+.dashboard_top-div {
+    display: flex;
+    flex-direction: column;
+    background: rgb(65, 65, 65);
+    color: white;
+    position: relative;
+    padding: 25px;
+    width: 300px;
+}
+
+.dashboard_top-div__moth-ico{
+    background-color: rgb(51, 214, 29);
+}
+.dashboard_top-div h1 {
+    width: 150px;
+    font-size: 25px;
+}
+.dashboard_top-div p {
+    opacity: .8;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.dahboard_flex {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 3px;
+}
+
+.dashboard_top_photo {
+    width: 85px;
+    margin-top: 25px;
+}
+
+.dashboard_top_photo_new {
+    width: 95px;
+    margin-top: 15px;
+}
+
+.dashboard_rev_ioc {
+    font-size: 85px;
+    color: yellow;
+    margin-top: 25px;
+}
+.dashboard_money_ioc{
+    font-size: 60px;
+    color: white;
+    margin-top: 35px;
+}
+
+.dashbaord_top-div_link {
+    position: relative;
+    left: 2px;
+    color: white;
+    font-size: 23px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

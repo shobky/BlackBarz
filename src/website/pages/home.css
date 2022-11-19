@@ -187,9 +187,9 @@
     }
 
     .nav_menu-ico {
-        font-size: 35px;
+        font-size: 30px;
         position: absolute;
-        top: 31px;
+        top: 35px;
         right: 7vw;
     }
 
@@ -294,7 +294,7 @@
         font-family: sans-serif;
         text-decoration: none;
         border: 1px solid white;
-        padding: 4px 5px 4px 5px;
+        padding: 6px 5px 6px 5px;
         font-size: 14px;
         transition: ease-in-out .1s;
 
@@ -315,9 +315,9 @@
 
     .home_login-btn-google-ico {
         position: relative;
-        top: 5px;
-        margin-right: 2px;
-        font-size: 25px;
+        top: 3px;
+        margin-right: 5px;
+        font-size: 16px;
 
     }
 

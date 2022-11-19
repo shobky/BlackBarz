@@ -1,9 +1,20 @@
+.find-member {
+    min-height: 100vh;
+}
+
 @media (min-width:800px) {
     .find-member {
         background-color: black;
         padding-bottom: 150px;
         color: white;
         margin-left: 60px;
+    }
+    .find-member_header{
+        position: fixed;
+        top: 0;
+        background-color: black;
+        width: 100%;
+        z-index: 99;
     }
 
     .find-member_header-search-input {
@@ -149,7 +160,7 @@
 
     .find-member_member-list_header {
         display: grid;
-        grid-template-columns: 250px 230px 235px 165px 150px;
+        grid-template-columns: 250px 230px 235px 175px 170px 150px;
         opacity: .8;
     }
 
@@ -174,7 +185,8 @@
 
     .find-member-ul-li {
         display: grid;
-        grid-template-columns: 235px 215px 220px 150px 200px 50px;
+        grid-template-columns: 235px 215px 220px 150px 100px 100px 50px;
+        align-items: center;
         gap: 15px;
         margin-bottom: 15px;
         color: rgba(255, 255, 255, 0.800);
@@ -192,12 +204,41 @@
     .acit-find-me {
         color: rgb(0, 224, 101);
         font-size: 20px;
-        position: relati ve;
+        position: relative;
         top: 4px;
         margin-right: 7px;
     }
 
-    .find-member-ul-li_buton-option {
+    .find-member-ul-li_chk-in-btn__checked {
+        background-color: transparent;
+        border: none;
+        font-size: 22px;
+        color: rgb(0, 240, 60);
+    }
+
+    .find-member-ul-li_chk-in-btn {
+        background-color: transparent;
+        border: none;
+        font-size: 22px;
+        color: rgb(179, 179, 179);
+    }
+
+    .find-member_payment-action__disabled {
+        font-size: 22px;
+        background-color: transparent;
+        border: none;
+        color: rgb(100, 100, 100);
+    }
+
+    .find-member_payment-action {
+        font-size: 22px;
+        background-color: transparent;
+        border: none;
+        color: gold;
+        cursor: pointer;
+    }
+
+    /* .find-member-ul-li_buton-option {
         cursor: pointer;
         background-color: transparent;
         border: none;
@@ -230,7 +271,6 @@
         align-items: center;
         padding-top: 5px;
         padding-bottom: 5px;
-        /* border-bottom: 2px solid rgba(97, 97, 97, 0.267); */
         padding: 15px;
         cursor: pointer;
     }
@@ -250,20 +290,20 @@
         background-color: #ffbb00;
         color: white;
 
-    }
+    } */
 
 }
 
 @media (max-width:799px) {
-    .find-member_header{
+    .find-member_header {
         position: fixed;
         top: 0;
         width: 100vw;
         background-color: black;
         z-index: 2;
     }
+
     .find-member {
-        padding-top: 60px;
         min-height: 100vh;
         background-color: black;
         padding-bottom: 50px;
@@ -286,7 +326,7 @@
     .find-member_header_search-container {
         display: flex;
         align-items: center;
-        border-bottom: 1px solid  rgb(65, 65, 65);
+        border-bottom: 1px solid rgb(65, 65, 65);
         padding-left: 15px;
     }
 
@@ -311,6 +351,8 @@
 
     .find-member_main {
         margin: 20px;
+        padding-top: 60px;
+
     }
 
     .find-member_main_header {
@@ -436,18 +478,19 @@
         height: 25px;
         border-radius: 50%;
     }
+
     .find-member_member-list_header {
         width: fit-content;
 
         display: grid;
-        grid-template-columns: 160px 150px 150px 100px 120px 50px ;
+        grid-template-columns: 160px 150px 150px 100px 120px 100px 50px;
         opacity: .8;
     }
 
     .find-member-ul-li {
         width: fit-content;
         display: grid;
-        grid-template-columns: 160px 150px 150px 100px 120px 50px;
+        grid-template-columns: 160px 150px 150px 100px 120px 100px 50px;
         margin-bottom: 15px;
         color: rgba(255, 255, 255, 0.800);
         border-bottom: 1px solid rgb(29, 28, 28);
@@ -470,7 +513,21 @@
         margin-right: 7px;
     }
 
-    .find-member-ul-li_buton-option {
+    .find-member-ul-li_chk-in-btn__checked {
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        color: rgb(0, 224, 101);
+    }
+
+    .find-member-ul-li_chk-in-btn {
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        color: rgb(179, 179, 179);
+    }
+
+    /* .find-member-ul-li_buton-option {
         cursor: pointer;
         background-color: transparent;
         border: none;
@@ -503,7 +560,6 @@
         align-items: center;
         padding-top: 5px;
         padding-bottom: 5px;
-        /* border-bottom: 2px solid rgba(97, 97, 97, 0.267); */
         padding: 15px;
         cursor: pointer;
     }
@@ -523,6 +579,6 @@
         background-color: #ffbb00;
         color: white;
 
-    }
+    } */
 
 }

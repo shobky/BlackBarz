@@ -13,13 +13,25 @@ const AllRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard firestoreMembers={firestoreMembers} />} />
             <Route path="/dashboard/add-member" element={<AddMember />} />
-            <Route path="/dashboard/find-member" element={<FindMember />} />
+            <Route path="/dashboard/find-member" element={<FindMember firestoreMembers={firestoreMembers} />} />
+            <Route path="/dashboard/club" element={<FindMember
+                isClub={true}
+                firestoreMembers={firestoreMembers?.filter((member) => {
+                    if (member.checked === true) {
+                        return member
+                    } else {
+
+                    }
+                })}
+            />} />
+
+
 
             {
                 firestoreMembers?.map((member) => (
-                    <Route path={`/dashboard/members/${member.email}`} element={<Member member={member} />} />
+                    <Route path={`/dashboard/find-member/${member.email}`} element={<Member member={member} />} />
                 ))
             }
         </Routes>

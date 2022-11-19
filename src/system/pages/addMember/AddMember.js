@@ -7,8 +7,48 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/Config';
 import { useNavigate } from 'react-router';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { FiEdit } from 'react-icons/fi'
 import { storage } from '../../../firebase/Config';
+import { FiEdit } from 'react-icons/fi';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import { useTheme } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import ListItemText from '@mui/material/ListItemText';
+import Checkbox from '@mui/material/Checkbox';
+import { HiOutlineCheck } from 'react-icons/hi';
+import { MdOutlineClose } from 'react-icons/md';
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+        },
+    },
+};
+
+
+const daysLs = [
+    'Friday',
+    'Saturday',
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'WednesDay',
+    'ThrusDay'
+];
+const hoursLs = ["1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm", "12pm", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12am"]
 
 const AddMember = () => {
     const [memberID, setMemberId] = useState()
@@ -19,12 +59,87 @@ const AddMember = () => {
     const [msg, setMsg] = useState('')
     const [error, setError] = useState('')
 
-
-    const nameRef = useRef()
-    const numberRef = useRef()
-    const mailRef = useRef()
-    const genderRef = useRef()
     const navigate = useNavigate()
+
+    const [mail, setMail] = useState('')
+    const [number, setNumber] = useState('')
+    const [name, setName] = useState('')
+    const [weight, setWeight] = useState('')
+    const [height, setHeight] = useState('')
+
+
+
+    const [gender, setGender] = useState('female');
+    const [plan, setPlan] = useState('12');
+    const [Trainer, setTrainer] = useState('0');
+    const [workType, setWorkType] = useState('0');
+    const [city, setCity] = useState([]);
+    const [days, setDays] = useState([]);
+    const [hours, setHours] = useState([]);
+
+
+
+    console.log({
+        // name: nameRef.current.value ?? "",
+        // number: numberRef.current.value ?? "",
+        // mail: mailRef.current.value ?? "",
+        gender,
+        plan,
+        workType,
+        Trainer,
+        favs: {
+            days,
+            hours,
+            city
+        },
+        // weight: weightRef.current.value ?? "",
+        // height: heightRef.current.value ?? ""
+
+    })
+
+    const handleChangeWorkType = (event) => {
+        setWorkType(event.target.value);
+    };
+    const handleChangeTriner = (event) => {
+        setTrainer(event.target.value);
+    };
+
+    const handleChangeGender = (event) => {
+        setGender(event.target.value);
+    };
+
+    const handleChangePlan = (event) => {
+        setPlan(event.target.value);
+    };
+
+    const handleChangeCity = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setCity(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
+
+    const handleChangeDays = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setDays(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
+    const handleChangeHours = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setHours(
+            // On autofill we get a stringified hours.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
 
     useEffect(() => {
         setMemberId(uuidv4().slice(0, 4))
@@ -42,8 +157,6 @@ const AddMember = () => {
         getdate()
         return
     }, [])
-    console.log(fullDate)
-
     const handleImgChange = (e) => {
         const file = e;
         if (file) {
@@ -66,84 +179,257 @@ const AddMember = () => {
     }
 
     const onAddMember = async (e) => {
+        setError('')
         e.preventDefault()
-        const url = await getDownloadURL(ref(storage, `members/${file?.name ?? ""}`)).catch(() => {
-            setDoc(doc(db, `members`, mailRef.current.value), {
-                name: nameRef.current.value,
-                number: numberRef.current.value,
-                gender: genderRef.current.value,
-                email: mailRef.current.value,
-                mid: memberID,
-                memberShipDate: fullDate
-            }).then(() => {
-                alert('member added successfully ')
-                navigate(`/dashboard/members/${mailRef.current.value}`)
-                document.getElementById('addMemberForm').reset()
-            }).catch((err) => {
-                setMsg('')
-                setError('something went wrong, try again')
-            })
-        })
-        setDoc(doc(db, `members`, mailRef.current.value), {
-            name: nameRef.current.value,
-            photoURL: url,
-            number: numberRef.current.value,
-            gender: genderRef.current.value,
-            email: mailRef.current.value,
+        // const url = await getDownloadURL(ref(storage, `members/${file?.name ?? ""}`)).catch(() => {
+        //     setDoc(doc(db, `members`, mailRef.current.value), {
+        //         weight: weightRef.current.value,
+        //         height: heightRef.current.value,
+        //         type: workType,
+        //         trainer: Trainer,
+        //         plan: plan,
+        //         name: nameRef.current.value,
+        //         number: numberRef.current.value,
+        //         gender: gender,
+        //         email: mailRef.current.value,
+        //         mid: memberID,
+        //         memberShipDate: fullDate,
+        //         favs: {
+        //             days: days,
+        //             hours: hours,
+        //             city: city
+        //         }
+        //     }).then(() => {
+        //         alert('member added successfully ')
+        //         navigate(`/dashboard/find-member/${mailRef.current.value}`)
+        //         document.getElementById('addMemberForm').reset()
+        //     }).catch((err) => {
+        //         setMsg('')
+        //         setError('something went wrong, try again')
+        //     })
+        // })
+        if (mail.length < 1) {
+            setError('Please type email adress!')
+            return
+        } else if (name.length < 1) {
+            setError('Please type member name!')
+            return
+        } else if (number.length < 1) {
+            setError('Please type member number!')
+            return
+        }
+
+        setDoc(doc(db, `members`, mail), {
+            height: height,
+            type: workType,
+            trainer: Trainer,
+            plan: plan,
+            name: name,
+            number: number,
+            gender: gender,
+            email: mail,
             mid: memberID,
-            memberShipDate: fullDate
+            memberShipDate: fullDate,
+            favs: {
+                days: days,
+                hours: hours,
+                city: city
+            }
         }).then(() => {
             alert('member added successfully ')
-            navigate(`/dashboard/members/${mailRef.current.value}`)
-            document.getElementById('addMemberForm').reset()
+            // navigate(`/dashboard/find-member/${mail.current.value}`)
+            // document.getElementById('addMemberForm').reset()
         }).catch((err) => {
             setMsg('')
             setError('something went wrong, try again')
         })
+
+
     }
 
     return (
         <div className='add-member'>
             <Nav page="addMember" />
-            <header>
-                <h1 className='add-member_header'>Add Members</h1>
-            </header>
+            <br />
+            {error && <p className='add-member-eorr-ms'>{error}</p>}
             <main className='add-member_main'>
-                <form id='addMemberForm' onSubmit={onAddMember} autoComplete='off' className='add-member_main_form'>
-
-                    <div className='add-member_photo-sectoin'>
+                {/* <div className='add-member_photo-sectoin'>
                         <img className='add-member_main_form_img' src={photoURL} alt="profile-pix" />
                         <input onChange={(e) => handleImgChange(e.target.files[0])} className='add-member_change-photo-input' type='file' />
                         <FiEdit className='add-member_change-photo_ico' />
                         <p className='add-member_main_form-error'>{error && error}</p>
                         <p className='add-member_main_form-msg'>{msg && msg}</p>
 
+                    </div> */}
+                <form>
+                    <p className='add-member_main_form_mid'>Member Id,  <span>#{memberID}</span></p>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: '15px', width: '30ch', display: "flex", flexDirection: "column" },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <FormControl style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+                            <TextField onChange={(e) => setName(e.target.value)} required sx={{ width: ' 25ch' }} id="outlined-basic" label="Name" variant="outlined" />
+                            <TextField onChange={(e) => setNumber(e.target.value)} required id="outlined-basic" label="Number" variant="outlined" />
+                        </FormControl>
+                        <div style={{ display: "flex", flexDirection: "row", gap: "0px", width: "100%", alignItems: "center" }}>
+
+                            <TextField onChange={(e) => setMail(e.target.value)} required type="email" sx={{ width: '15ch' }} id="outlined-basic" label="Gmail" variant="outlined" />
+                            <FormControl sx={{ m: 1, width: "14.3ch" }}>
+                                <InputLabel sx={{ width: "fit-content" }} id="demo-simple-select-helper-label">Trainer</InputLabel>
+                                <Select
+                                    required
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={Trainer}
+                                    label="Trainer"
+                                    onChange={handleChangeTriner}
+                                >
+                                    <MenuItem value="">
+                                        <em>None</em>
+                                    </MenuItem>
+                                    <MenuItem value={'Ahmed'}> Captain Ahmed</MenuItem>
+                                    <MenuItem value={'Omar'}> Captain Omar</MenuItem>
+                                    <MenuItem value={'Sameh'}> Captain Sameh</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </div>
+                        <FormControl sx={{ m: 1 }}>
+                            <InputLabel sx={{ width: "fit-content" }} id="demo-simple-select-helper-label">Workout type</InputLabel>
+                            <Select
+                                required
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={workType}
+                                label="Workout type"
+                                onChange={handleChangeWorkType}
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={'Lefteing'}> Lefting </MenuItem>
+                                <MenuItem value={'CrossFit'}> CrossFit</MenuItem>
+                                <MenuItem value={'Street'}> Street </MenuItem>
+                                <MenuItem value={'Cardio'}> Cardio </MenuItem>
+
+                            </Select>
+                        </FormControl>
+
+                        <FormControl style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+                            <TextField required onChange={(e) => setWeight(e.target.value)} sx={{ width: ' 20ch' }} id="outlined-basic" label="Weight" variant="outlined" />
+                            <TextField required onChange={(e) => setHeight(e.target.value)} id="outlined-basic" label="Height" variant="outlined" />
+                        </FormControl>
+
+                        <div style={{ display: 'flex', flexDirection: "row", gap: " 10px" }}>
+                            <FormControl sx={{ width: '17ch' }}>
+                                <InputLabel htmlFor="grouped-native-select">City</InputLabel>
+                                <Select
+                                    required
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={city}
+                                    label="City"
+                                    onChange={handleChangeCity}>
+                                    <MenuItem value={'Portsaid'}> Portsaid </MenuItem>
+                                    <MenuItem value={'Portfouad'}> Portfouad </MenuItem>
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{ width: '25ch' }}>
+                                <InputLabel id="demo-multiple-checkbox-label">Days</InputLabel>
+                                <Select
+                                    required
+                                    labelId="demo-multiple-checkbox-label"
+                                    id="demo-multiple-checkbox"
+                                    multiple
+                                    value={days}
+                                    onChange={handleChangeDays}
+                                    input={<OutlinedInput label="Days" />}
+                                    renderValue={(selected) => selected.join(', ')}
+                                    MenuProps={MenuProps}
+                                >
+                                    {daysLs.map((day) => (
+                                        <MenuItem key={day} value={day}>
+                                            <Checkbox checked={days.indexOf(day) > -1} />
+                                            <ListItemText primary={day} />
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{ width: '18ch' }}>
+                                <InputLabel htmlFor="grouped-select">Time</InputLabel>
+                                <Select
+                                    required
+                                    labelId="demo-multiple-checkbox-label"
+                                    id="demo-multiple-checkbox"
+                                    multiple
+                                    value={hours}
+                                    onChange={handleChangeHours}
+                                    input={<OutlinedInput label="Time" />}
+                                    renderValue={(selected) => selected.join(', ')}
+                                    MenuProps={MenuProps}
+                                >
+                                    {hoursLs.map((hour) => (
+                                        <MenuItem key={hour} value={hour}>
+                                            <Checkbox checked={hours.indexOf(hour) > -1} />
+                                            <ListItemText primary={hour} />
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+
+                        </div>
+
+                    </Box>
+
+                    <div style={{ marginLeft: "20px", marginTop: "20px" }}>
+                        <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
+                        <RadioGroup
+                            required
+                            aria-labelledby="demo-controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            value={gender}
+                            onChange={handleChangeGender}
+
+                        >
+                            <div style={{ display: "flex" }}>
+                                <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="female" control={<Radio />} label="Female" />
+                                <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="male" control={<Radio />} label="Male" />
+                            </div>
+                        </RadioGroup>
                     </div>
-                    <div className='add-member_main_form_inputs'>
-                        <label>Member Id,  <span className='add-member_main_form_mid'>#{memberID}</span></label>
-                        <br />
-                        <label>Name: </label>
-                        <input ref={nameRef} required type='text' placeholder='Member Name' />
+                    <div style={{ marginLeft: "20px", marginTop: "20px" }}>
+                        <FormLabel id="demo-controlled-radio-buttons-group">Workout Plan</FormLabel>
+                        <RadioGroup
+                            required
+                            aria-labelledby="demo-controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            value={plan}
+                            onChange={handleChangePlan}
 
-                        <label>Phone number: </label>
-                        <input ref={numberRef} required type='number' placeholder='phone number' />
-
-                        <label>Google mail: </label>
-                        <input ref={mailRef} required type='email' placeholder='email' />
-
-                        <label>Gender: </label>
-                        <input ref={genderRef} required type='text' placeholder='gender' />
-
-                        <button className='add-member_main_form_btn'>FINISH</button>
-
+                        >
+                            <div style={{ display: "flex" }}>
+                                <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="12" control={<Radio />} label="12" />
+                                <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="24" control={<Radio />} label="24" />
+                            </div>
+                        </RadioGroup>
+                    </div>
+                    <div className='add-member_form_actions'>
+                        <button type="button" className='add-member-submit-btn__cancel'><MdOutlineClose /></button>
+                        <button type='button' onClick={(e) => onAddMember(e)} className='add-member-submit-btn'><HiOutlineCheck /></button>
                     </div>
 
-                    {/* <label>Name: </label>
-                    <input  type='text' placeholder='Member Name' /> */}
+
+
                 </form>
+
             </main>
-        </div>
+        </div >
     )
 }
 
 export default AddMember
+
+

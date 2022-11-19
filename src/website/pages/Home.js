@@ -2,7 +2,6 @@ import React from 'react'
 import './home.css'
 import grid from '../../assets/grid.png'
 import { Link } from 'react-router-dom'
-import { HiHome, HiMenuAlt3 } from 'react-icons/hi'
 import { RiUserFill } from 'react-icons/ri'
 import { IoSettingsSharp } from 'react-icons/io5'
 import { MdSpaceDashboard } from 'react-icons/md'
@@ -22,11 +21,10 @@ const Home = () => {
         <div className='home_section-1'>
             <nav className='nav-container'>
                 <Link className='nav_link'><IoSettingsSharp /></Link>
-                {/* <Link className='nav_link'><HiHome /></Link>[] */}
                 <Link className='nav_link'><RiUserFill /></Link>
                 <Link to='/dashboard' className='nav_link'><MdSpaceDashboard /></Link>
             </nav>
-            <Link className='home_dashbalinkhfods' to='/dashboard'> <HiMenuAlt3 className='nav_menu-ico' /></Link>
+            <Link className='home_dashbalinkhfods' to='/dashboard'> <MdSpaceDashboard className='nav_menu-ico' /></Link>
             <header>
                 <h1 className='home_header_logo'>BLACK <span>BARZ</span></h1>
                 <p className='home_header-slogan'>Health Fitnes Club</p>

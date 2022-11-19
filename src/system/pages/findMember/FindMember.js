@@ -1,41 +1,48 @@
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../../../contexts/AuthContext'
 import noprofile from '../../../assets/noprofile.webp'
 import Nav from '../../components/nav/Nav'
 import './findMember.css'
 import { GoSearch } from 'react-icons/go'
 import { BiFilter } from 'react-icons/bi'
-import { AiFillCheckCircle, AiOutlineArrowDown } from 'react-icons/ai'
-import { SlOptions } from 'react-icons/sl'
-import { BsArrowRightCircleFill, BsCircleFill } from 'react-icons/bs'
-import { IoSettingsSharp } from 'react-icons/io5'
-import { HiUserRemove } from 'react-icons/hi'
-import { MdCancel } from 'react-icons/md'
+import { GiEmptyHourglass, GiTwoCoins } from 'react-icons/gi'
+import { GrMoney } from 'react-icons/gr'
+
+
+import { AiFillCheckCircle } from 'react-icons/ai'
+import { BsArrowRightCircleFill, BsCalendarCheckFill } from 'react-icons/bs'
 import { IoMdClose } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { doc, updateDoc } from 'firebase/firestore'
+import { db } from '../../../firebase/Config'
+import { MdOutlineDoNotDisturb } from 'react-icons/md'
 
 
 
 
 
 
-const FindMember = () => {
+const FindMember = ({ firestoreMembers, isClub }) => {
     const [searchQ, setSearchQ] = useState('')
-    const { firestoreMembers } = useAuth()
-    const [filter, setFilter] = useState('all')
-    const [moreDetails, setMoreDetails] = useState(false)
+    const [filterq, setFilter] = useState('all')
     const [totalRenderedMembers, setTRM] = useState(firestoreMembers?.length)
-
-    const handleMoreOption = (key) => {
-        setMoreDetails(prevstate => ({
-            ...moreDetails,
-            [key]: !prevstate[key]
-        }))
-    }
 
     useEffect(() => {
         setTRM(
-            firestoreMembers?.filter((filterd) => {
+            firestoreMembers?.filter((filteredMember) => {
+                if (filterq.includes('all')) {
+                    return filteredMember
+                } else if (filterq === 'paid' && filteredMember.checked === true) {
+                    return filteredMember
+                }
+                else if (filterq === 'male' && (filteredMember.gender === 'Male' || filteredMember.gender === 'male')) {
+                    return filteredMember
+                }
+                else if (filterq === 'female' && (filteredMember.gender === 'Female' || filteredMember.gender === 'female')) {
+                    return filteredMember
+                } else {
+
+                }
+            }).filter((filterd) => {
                 if (filterd.name.toLowerCase().includes(searchQ.toLowerCase())) {
                     return filterd
                 } else if (searchQ === "") {
@@ -49,11 +56,33 @@ const FindMember = () => {
                 }
             }).length
         )
-    }, [firestoreMembers, searchQ])
+    }, [firestoreMembers, searchQ, filterq])
+
+    const handleCheckingIn = (member) => {
+        if (member.checked === true) {
+            updateDoc(doc(db, `members/${member.email}`), {
+                checked: false
+            }).then(() => {
+                console.log('checked')
+            }).catch(() => {
+                alert('failed')
+            })
+        } else {
+            updateDoc(doc(db, `members/${member.email}`), {
+                checked: true,
+                session: member.session ? (member.session + 1) : 1
+            }).then(() => {
+                console.log('checked')
+            }).catch(() => {
+                alert('failed')
+            })
+        }
+    }
+
 
     return (
         <div className='find-member'>
-            <Nav page='findMember' />
+            <Nav page={isClub ? 'club' : 'findMember'} />
             <header className='find-member_header'>
                 {/* <h1 className='find-member_head'>Gym Members</h1> */}
                 <div className='find-member_header_search-container'>
@@ -62,17 +91,18 @@ const FindMember = () => {
                     <IoMdClose onClick={() => setSearchQ('')} className='find-member_header_search-delete-ico' />
                 </div>
             </header>
+            <br/>
             <main className='find-member_main'>
-                <p className='find-member_main_header'>Members</p>
+                <p className='find-member_main_header'>{isClub ? "Currently working out" : "Members"}</p>
                 <div className='find-member_main-filter-optoins'>
                     <button className='find-member_main-filter-option find-member_main-filter-option__filter'>Filters <BiFilter className='find-member_main_filter-ico' /></button>
                     <div className='find-member_main_filter_options_btns'>
-                        <button onClick={() => setFilter('all')} className='find-member_main-filter-option find-member_main-filter-option__all'>{filter === 'all' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}All</button>
-                        <button onClick={() => setFilter('exp')} className='find-member_main-filter-option find-member_main-filter-option__exp'>{filter === 'exp' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}Expired</button>
-                        <button onClick={() => setFilter('paid')} className='find-member_main-filter-option find-member_main-filter-option__paid'>{filter === 'paid' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}Active</button>
-                        <button onClick={() => setFilter('new')} className='find-member_main-filter-option find-member_main-filter-option__new'>{filter === 'new' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}New</button>
-                        <button onClick={() => setFilter('male')} className='find-member_main-filter-option find-member_main-filter-option__male'>{filter === 'male' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}Male</button>
-                        <button onClick={() => setFilter('female')} className='find-member_main-filter-option find-member_main-filter-option__female'>{filter === 'female' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}Female</button>
+                        <button onClick={() => setFilter('all')} className='find-member_main-filter-option find-member_main-filter-option__all'>{filterq === 'all' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}All</button>
+                        <button onClick={() => setFilter('exp')} className='find-member_main-filter-option find-member_main-filter-option__exp'>{filterq === 'exp' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}Expired</button>
+                        <button onClick={() => setFilter('paid')} className='find-member_main-filter-option find-member_main-filter-option__paid'>{filterq === 'paid' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}checked</button>
+                        <button onClick={() => setFilter('new')} className='find-member_main-filter-option find-member_main-filter-option__new'>{filterq === 'new' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}New</button>
+                        <button onClick={() => setFilter('male')} className='find-member_main-filter-option find-member_main-filter-option__male'>{filterq === 'male' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}Male</button>
+                        <button onClick={() => setFilter('female')} className='find-member_main-filter-option find-member_main-filter-option__female'>{filterq === 'female' ? <BsArrowRightCircleFill className='find-member_main-filter-ico__active' /> : ''}Female</button>
                     </div>
 
                 </div>
@@ -83,15 +113,32 @@ const FindMember = () => {
                             <li>Member : </li>
                             <li>Email : </li>
                             <li>Phone number : </li>
-                            <li>Status : </li>
                             <li>Joining date : </li>
+                            <li>Status : </li>
+                            <li>Actions : </li>
+
+
 
                             {/* <li>Last attended :     </li> */}
                         </ul>
                     </ul>
                     <ul className='find-member_members-mapped'>
                         {
-                            firestoreMembers?.filter((filterd) => {
+                            firestoreMembers?.filter((filteredMember) => {
+                                if (filterq.includes('all')) {
+                                    return filteredMember
+                                } else if (filterq === 'paid' && filteredMember.checked === true) {
+                                    return filteredMember
+                                }
+                                else if (filterq === 'male' && (filteredMember.gender === 'Male' || filteredMember.gender === 'male')) {
+                                    return filteredMember
+                                }
+                                else if (filterq === 'female' && (filteredMember.gender === 'Female' || filteredMember.gender === 'female')) {
+                                    return filteredMember
+                                } else {
+
+                                }
+                            }).filter((filterd) => {
                                 if (filterd.name.toLowerCase().includes(searchQ.toLowerCase())) {
                                     return filterd
                                 } else if (searchQ === "") {
@@ -110,7 +157,7 @@ const FindMember = () => {
                             }).map((member, index) => (
                                 <li className='find-member-ul-li' key={index}>
                                     <div className='find-member-ul-li_member-ifo'>
-                                        <img className='find-member_main_form_img' src={member.photoURL ?? noprofile} alt="profile-pix" />
+                                        <Link to={`/dashboard/find-member/${member.email}`}><img className='find-member_main_form_img' src={member.photoURL ?? noprofile} alt="profile-pix" /></Link>
                                         <div>
                                             <p><strong>{member.name}</strong></p>
                                             <p>#{member.mid}</p>
@@ -118,29 +165,19 @@ const FindMember = () => {
                                     </div>
                                     <p>{member.email}</p>
                                     <p>{member.number}</p>
-                                    <p style={{ marginTop: '-7px' }}> <AiFillCheckCircle className='acit-find-me' />Active</p>
                                     <p>{member.memberShipDate}</p>
-                                    {
-                                        moreDetails ?
-                                            <>
-                                                <div
-                                                    key={index}
-                                                    style={{
-                                                        display: moreDetails[`${index}`]
-                                                            ? "bolck"
-                                                            : "none"
-                                                    }}
+                                    <p style={{ textAlign: "center    " }}>{member.session >= member.plan ? <div style={{ color: "red", display: "flex", flexDirection: "column", textAlign: "center" }}> <p><MdOutlineDoNotDisturb style={{ position: 'relative', top: "4px", fontSize: "20px" }} />Expired</p><p>{member.plan - member.session}</p></div> : member.session >= (member.plan - 6) ? <span style={{ color: "orange" }}> <GiEmptyHourglass style={{ position: 'relative', top: "2px" }} />Duo in {member.plan - member.session}</span> : <span style={{ color: "rgb(0, 245, 102)" }}><AiFillCheckCircle className='acit-find-me' /> Active</span>}</p>
 
-                                                    id='findMemberMoreDetails' className='find-member_members-list-more-options'>
-                                                    <p className='find-member_more_details_link  find-member_more-detailes_chk-in'><AiOutlineArrowDown />check-in</p>
-                                                    <Link to={`/dashboard/members/${member.email}`} className=' find-member_more_details_link find-member_more-detailes-settings'><IoSettingsSharp />settings</Link>
-                                                    <p className='find-member_more_details_link find-member_more-detailes-remove'><HiUserRemove />remove member</p>
-                                                </div>
-                                                <button onClick={() => setMoreDetails(false)} className='find-member-ul-li_buton-option'><SlOptions /></button>
-                                            </>
+
+                                    <button style={{ cursor: "pointer" }} onDoubleClick={() => handleCheckingIn(member)} className={member.checked === true ? 'find-member-ul-li_chk-in-btn__checked' : 'find-member-ul-li_chk-in-btn'}><BsCalendarCheckFill /></button>
+                                    {
+                                        member.session <= member.plan - 7 ?
+                                            <button className="find-member_payment-action__disabled"><GiTwoCoins /></button>
                                             :
-                                            <button onClick={() => handleMoreOption(index)} className='find-member-ul-li_buton-option'><SlOptions /></button>
+                                            <button style={{ cursor: "pointer" }} className="find-member_payment-action"><GiTwoCoins /></button>
+
                                     }
+
                                 </li>
                             ))
                         }

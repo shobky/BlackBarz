@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
 import { auth, signInWithGoogle } from '../firebase/Config'
-import { getRedirectResult, GoogleAuthProvider } from 'firebase/auth'
+import { getRedirectResult, GoogleAuthProvider, signOut } from 'firebase/auth'
 
 import { collection } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { db } from '../firebase/Config'
+import { Navigate, useNavigate } from "react-router"
 
 const AuthContext = React.createContext()
 
@@ -13,6 +14,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
+    const navigate  = useNavigate()
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -47,6 +49,12 @@ export const AuthProvider = ({ children }) => {
 
     }
 
+    const logout = () => {
+        signOut(auth).then(() => {
+            navigate('/')
+        })
+    }
+
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             setCurrentUser(user);
@@ -56,7 +64,8 @@ export const AuthProvider = ({ children }) => {
     const values = {
         login,
         currentUser,
-        firestoreMembers
+        firestoreMembers,
+        logout
     }
 
     return (

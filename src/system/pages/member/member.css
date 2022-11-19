@@ -1,5 +1,99 @@
-.dfjlaskf{
-    text-align: center;
-    margin-top: 45vh;
-    font-size: 30px;
+
+@media (min-width:800px) {
+    .member {
+        background-color: black;
+        min-height: 100vh;
+        color: rgb(255, 255, 255);
+    }
+
+    .member_content{
+        display: flex;
+        justify-content: center;
+        gap: 5vw;
+        margin-left: 20vw;
+        width: 100vw;
+        margin-top: 25vh;
+    }
+
+    .member_photo {
+        width: 200px;
+    }
+
+    .member_name {
+        font-size: 30px;
+        margin-top: 10px;
+
+    }
+
+    .member_contacts {
+        opacity: .8;
+        position: relative;
+        top: 15px;
+    }
+
+    .member_joining-date {
+        margin-top: 15px;
+
+    }
+    .member{
+        display: flex;
+        gap: 15vw;
+    }
+    .member_main_head{
+        font-size: 25px;
+        color: rgb(212, 212, 208);
+        margin-bottom: 15px;
+    }
+    .member_main_info-div{
+        margin-bottom: 30px;
+    }
+    .member_main_info-p{
+        font-size: 18px;
+        margin: 2px 2px 2px 4px;
+    }
+}
+
+@media (max-width:799px) {
+    .member {
+        background-color: black;
+        min-height: 100vh;
+        color: white;
+    }
+
+    .member_header_member-face{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .member_header {
+        padding-top: 10vh;
+    }
+
+    .member_photo {
+        width: 200px;
+        border-radius: 50%;
+        border: 1px solid white;
+    }
+
+    .member_name {
+        font-size: 30px;
+        margin-top: 17px;
+
+    }
+    .member_header_member-info{
+        margin-left: 10vw;
+        margin-top: 5vh;
+    }
+
+    .member_contacts {
+        opacity: .8;
+        position: relative;
+        top: 15px;
+    }
+
+    .member_joining-date {
+        margin-top: 15px;
+
+    }
+
 }
