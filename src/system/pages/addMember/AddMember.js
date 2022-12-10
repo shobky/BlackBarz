@@ -1,14 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from '../../components/nav/Nav'
 import './addMember.css'
-import noprofile from '../../../assets/noprofile.webp'
 import { uuidv4 } from "@firebase/util";
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../firebase/Config';
-import { useNavigate } from 'react-router';
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { storage } from '../../../firebase/Config';
-import { FiEdit } from 'react-icons/fi';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -20,12 +15,12 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import { HiOutlineCheck } from 'react-icons/hi';
 import { MdOutlineClose } from 'react-icons/md';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -51,15 +46,19 @@ const daysLs = [
 const hoursLs = ["1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm", "12pm", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12am"]
 
 const AddMember = () => {
+    const plansQuery = collection(db, `plans`)
+    const [firestorePlans] = useCollectionData(plansQuery)
+    const trainersQuery = collection(db, `trainers`)
+    const [firestoretrainers] = useCollectionData(trainersQuery)
+
     const [memberID, setMemberId] = useState()
-    const [fullDate, setFullDate] = useState()
-    const [file, setFile] = useState(null)
-    const [photoURL, setPhotoURL] = useState(noprofile)
-    const [isChoosing, setIsChoosing] = useState(false)
+    const [msDay, setMsDay] = useState()
+    const [msMonth, setMsMonth] = useState()
+    const [msYear, setMsYear] = useState()
+
     const [msg, setMsg] = useState('')
     const [error, setError] = useState('')
 
-    const navigate = useNavigate()
 
     const [mail, setMail] = useState('')
     const [number, setNumber] = useState('')
@@ -76,6 +75,7 @@ const AddMember = () => {
     const [city, setCity] = useState([]);
     const [days, setDays] = useState([]);
     const [hours, setHours] = useState([]);
+
 
 
 
@@ -149,65 +149,17 @@ const AddMember = () => {
     useEffect(() => {
         const getdate = () => {
             const currentdate = new Date();
-            let date = currentdate.getDate() + "/"
-                + (currentdate.getMonth() + 1) + '/'
-                + (currentdate.getFullYear())
-            setFullDate(date)
+            setMsDay(currentdate.getDate())
+            setMsMonth(currentdate.getMonth() + 1)
+            setMsYear(currentdate.getFullYear())
         }
         getdate()
         return
     }, [])
-    const handleImgChange = (e) => {
-        const file = e;
-        if (file) {
-            setError('')
-            setMsg('Uploading photo...')
-            setFile(file);
-            setPhotoURL(URL.createObjectURL(file));
-            setIsChoosing(true)
-            const storageRef = ref(storage, `members/${file.name}`);
-
-            uploadBytes(storageRef, file).then((snapshot) => {
-                setError('')
-                setMsg('Photo uploaded sucsessfuly');
-
-            }).catch((err) => {
-                setMsg('')
-                setError(`can't upload photo, try again`)
-            })
-        }
-    }
 
     const onAddMember = async (e) => {
         setError('')
         e.preventDefault()
-        // const url = await getDownloadURL(ref(storage, `members/${file?.name ?? ""}`)).catch(() => {
-        //     setDoc(doc(db, `members`, mailRef.current.value), {
-        //         weight: weightRef.current.value,
-        //         height: heightRef.current.value,
-        //         type: workType,
-        //         trainer: Trainer,
-        //         plan: plan,
-        //         name: nameRef.current.value,
-        //         number: numberRef.current.value,
-        //         gender: gender,
-        //         email: mailRef.current.value,
-        //         mid: memberID,
-        //         memberShipDate: fullDate,
-        //         favs: {
-        //             days: days,
-        //             hours: hours,
-        //             city: city
-        //         }
-        //     }).then(() => {
-        //         alert('member added successfully ')
-        //         navigate(`/dashboard/find-member/${mailRef.current.value}`)
-        //         document.getElementById('addMemberForm').reset()
-        //     }).catch((err) => {
-        //         setMsg('')
-        //         setError('something went wrong, try again')
-        //     })
-        // })
         if (mail.length < 1) {
             setError('Please type email adress!')
             return
@@ -221,6 +173,7 @@ const AddMember = () => {
 
         setDoc(doc(db, `members`, mail), {
             height: height,
+            weight:weight,
             type: workType,
             trainer: Trainer,
             plan: plan,
@@ -229,12 +182,20 @@ const AddMember = () => {
             gender: gender,
             email: mail,
             mid: memberID,
-            memberShipDate: fullDate,
+            memberShipDate: {
+                day: msDay,
+                month: msMonth,
+                msYear: msYear
+            },
             favs: {
                 days: days,
                 hours: hours,
                 city: city
-            }
+            },
+            checked: true,
+            session: 1,
+            paymentmonth:msMonth,
+            paymentday: msDay
         }).then(() => {
             alert('member added successfully ')
             // navigate(`/dashboard/find-member/${mail.current.value}`)
@@ -273,11 +234,11 @@ const AddMember = () => {
                     >
                         <FormControl style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
                             <TextField onChange={(e) => setName(e.target.value)} required sx={{ width: ' 25ch' }} id="outlined-basic" label="Name" variant="outlined" />
-                            <TextField onChange={(e) => setNumber(e.target.value)} required id="outlined-basic" label="Number" variant="outlined" />
+                            <TextField onChange={(e) => setNumber(e.target.value)} type="tel" required id="outlined-basic" label="Number" variant="outlined" />
                         </FormControl>
                         <div style={{ display: "flex", flexDirection: "row", gap: "0px", width: "100%", alignItems: "center" }}>
 
-                            <TextField onChange={(e) => setMail(e.target.value)} required type="email" sx={{ width: '15ch' }} id="outlined-basic" label="Gmail" variant="outlined" />
+                            <TextField onChange={(e) => setMail(e.target.value)} type="email" required  sx={{ width: '15ch' }} id="outlined-basic" label="Gmail" variant="outlined" />
                             <FormControl sx={{ m: 1, width: "14.3ch" }}>
                                 <InputLabel sx={{ width: "fit-content" }} id="demo-simple-select-helper-label">Trainer</InputLabel>
                                 <Select
@@ -291,9 +252,11 @@ const AddMember = () => {
                                     <MenuItem value="">
                                         <em>None</em>
                                     </MenuItem>
-                                    <MenuItem value={'Ahmed'}> Captain Ahmed</MenuItem>
-                                    <MenuItem value={'Omar'}> Captain Omar</MenuItem>
-                                    <MenuItem value={'Sameh'}> Captain Sameh</MenuItem>
+                                    {
+                                        firestoretrainers?.map((firestoretrainer) => (
+                                            <MenuItem key={firestoretrainer.name} value={firestoretrainer.name}> Captain {firestoretrainer.name}</MenuItem>
+                                        ))
+                                    }
                                 </Select>
                             </FormControl>
                         </div>
@@ -411,8 +374,16 @@ const AddMember = () => {
 
                         >
                             <div style={{ display: "flex" }}>
-                                <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="12" control={<Radio />} label="12" />
-                                <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="24" control={<Radio />} label="24" />
+                                {
+                                    firestorePlans?.map((firestorePlan, index) => (
+                                        <div className='add-members_plans' key={index}>
+                                            <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value={firestorePlan.type} control={<Radio />} label={firestorePlan.type} />
+                                            <p className='add-members_plan-price'>{firestorePlan.price}l.e</p>
+                                        </div>
+                                    ))
+                                }
+                                {/* <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="12" control={<Radio />} label="12" />
+                                <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="24" control={<Radio />} label="24" /> */}
                             </div>
                         </RadioGroup>
                     </div>
@@ -420,9 +391,6 @@ const AddMember = () => {
                         <button type="button" className='add-member-submit-btn__cancel'><MdOutlineClose /></button>
                         <button type='button' onClick={(e) => onAddMember(e)} className='add-member-submit-btn'><HiOutlineCheck /></button>
                     </div>
-
-
-
                 </form>
 
             </main>

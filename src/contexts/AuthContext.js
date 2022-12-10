@@ -22,7 +22,21 @@ export const AuthProvider = ({ children }) => {
     const fireStoreMemberQuery = collection(db, `members`)
     const [firestoreMembers] = useCollectionData(fireStoreMemberQuery)
 
-    
+    const [varient, setVarient] = useState('')
+
+    const [city, setCity] = useState('PS')
+
+    const handleCity = () => {
+        if (city === 'PS') {
+            setCity('PF')
+        }else {
+            setCity('PS')
+        }
+    }
+
+    const onSetVarient = (vrt) => {
+        setVarient(vrt)
+    }
 
 
     const login = () => {
@@ -65,7 +79,11 @@ export const AuthProvider = ({ children }) => {
         login,
         currentUser,
         firestoreMembers,
-        logout
+        logout, 
+        onSetVarient,
+        varient,
+        handleCity,
+        city
     }
 
     return (

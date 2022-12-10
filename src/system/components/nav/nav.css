@@ -1,7 +1,10 @@
 @media (min-width:800px) {
-    .dashboard_nav-menu-ico__mobile, .dashboard_nav-menu-ico__mobile__active{
+
+    .dashboard_nav-menu-ico__mobile,
+    .dashboard_nav-menu-ico__mobile__active {
         display: none;
     }
+
     .dashboard_nav {
         background: rgb(65, 65, 65);
         height: 100%;
@@ -11,7 +14,6 @@
         width: 60px;
         color: rgb(255, 255, 255);
         transition: ease-in-out .2s;
-
     }
 
     .dashboard_nav_landscape__open {
@@ -45,7 +47,7 @@
 
     .dashboard_nav-menu-ico {
         font-size: 20px;
-        background-color: #ffbb00;
+        background-color: #0065A3;
         padding: 20px 20px 20px 20px;
         transition: ease-in-out .2s;
 
@@ -64,8 +66,8 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        height: 60vh;
-        padding: 20px;
+        height: 55vh;
+        padding: 20px 20px 50px 20px;
         gap: 20px;
     }
 
@@ -79,7 +81,8 @@
         gap: 20px;
         position: relative;
     }
-    .dashboard_nav_btn{
+
+    .dashboard_nav_btn {
         text-decoration: none;
         color: rgb(255, 255, 255);
         font-size: 22px;
@@ -93,7 +96,7 @@
     }
 
     .dashboard_nav_link__active {
-        color: #ffbb00;
+        color: #0065A3;
     }
 
 
@@ -177,7 +180,7 @@
         right: 0px;
         top: 0;
         z-index: 999;
-        background-color: #ffbb00;
+        background-color: #0065A3;
         transition: ease-in-out .4s;
         z-index: 3;
 
@@ -222,7 +225,8 @@
         gap: 20px;
         position: relative;
     }
-    .dashboard_nav_btn{
+
+    .dashboard_nav_btn {
         text-decoration: none;
         color: rgb(255, 255, 255);
         font-size: 22px;
@@ -236,7 +240,7 @@
     }
 
     .dashboard_nav_link__active {
-        color: #ffbb00;
+        color: #0065A3;
     }
 
 
@@ -258,4 +262,33 @@
         right: -100;
     }
 
+}
+
+.nav_switch-places {
+    border: none;
+
+    background-color: transparent;
+    margin-top: 15px    ;
+    color: rgb(153, 168, 255);
+    text-align: center;
+    position: relative;
+    left: 18px;
+    padding: 4px;
+    font-weight: bold;
+    width: fit-content;
+    cursor: pointer;
+}
+.nav_seitch-places-PF{
+    border: none;
+
+    background-color: transparent;
+    margin-top: 15px    ;
+    color: rgb(96, 255, 123);
+    text-align: center;
+    position: relative;
+    left: 18px;
+    padding: 4px;
+    font-weight: bold;
+    width: fit-content;
+    cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import { BiArrowBack } from 'react-icons/bi'
 // import { Link } from 'react-router-dom'
 import Nav from '../../components/nav/Nav'
@@ -6,6 +6,23 @@ import './member.css'
 import noPhoto from '../../../assets/noprofile.webp'
 
 const Member = ({ member }) => {
+    const [msMonth, setMsMonth] = useState()
+    const [msDay, setMsDay] = useState()
+
+
+
+    useEffect(() => {
+        const getdate = () => {
+            const currentdate = new Date();
+            setMsMonth(currentdate.getMonth() + 1)
+            setMsDay(currentdate.getDate())
+
+
+        }
+        getdate()
+        return
+    }, [])
+
     return (
         <div className='member'>
             <Nav page='findMember' />
@@ -20,12 +37,32 @@ const Member = ({ member }) => {
                         <p className='member_contacts'>{member.number}</p>
                         <p className='member_contacts'>{member.email}</p>
                         <br />
-                        <p className='member_joining-date'><strong>Joined on :</strong> {member.memberShipDate}</p>
-                        <p className='member_joining-date'><strong>Status : </strong> {member.session >= member.plan ? <span style={{ color: "red" }}> Expired</span> : member.session >= (member.plan - 6) ? <span style={{ color: "orange" }}>Duo in {member.plan - member.session} sessions</span> : <span style={{ color: "rgb(0, 245, 102)" }}> Active</span>}</p>
+                        <p className='member_joining-date'><strong>Joined on  :</strong> {`${member.memberShipDate?.day ?? ""}/${member.memberShipDate?.month ?? ""}/${member.memberShipDate?.msYear ?? ""}`}</p>
+                        <p className='member_joining-date'><strong>Last payment :</strong> {`${member.lastPaid?.day ?? ""}/${member.lastPaid?.month ?? ""}/${member.lastPaid?.msYear ?? ""}`}</p>
+
+                        {
+                            member.frozen ?
+                                <div>
+                                    <p className='member_joining-date'><strong>Status : </strong> <span style={{ color: "#15e4ff" }}> Frozen</span></p>
+                                    <p style={{ marginTop: "5px" }}><strong>Freeze date : </strong>{member.freezeDate.day}/{member.freezeDate.month}/{member.freezeDate.year}</p>
+                                </div>
+
+                                :
+                                <div>
+                                    <br />
+                                    {
+                                        member.unFreezeDate ?
+                                            <p><strong>UnFreeze date: </strong>{member.unFreezeDate.day}/{member.unFreezeDate.month}/{member.unFreezeDate.year}</p>
+                                            : ""
+                                    }
+                                    <p className='member_joining-date'><strong>Status : </strong> {member.session >= member.plan || (member.paymentmonth !== msMonth && member.paymentday <= msDay) ? <span style={{ color: "red" }}> Expired</span> : member.session >= (member.plan - 3) ? <span style={{ color: "orange" }}>Duo in {member.plan - member.session} sessions</span> : <span style={{ color: "rgb(0, 245, 102)" }}> Active</span>}</p>
+                                </div>
+                        }
+
                         <p className='member_joining-date'><strong>Sessions :</strong> {`${member.session ?? 0} / ${member.plan ?? 'NO PLAN'} `}</p>
                         {
                             member.session > member.plan ?
-                                <p className='member_joining-date'><strong>Carry over :</strong> <span style={{color:"red"}}>{`${member.session - member.plan} sesston/s` }</span></p>
+                                <p className='member_joining-date'><strong>Carry over :</strong> <span style={{ color: "red" }}>{`${member.session - member.plan} sesston/s`}</span></p>
                                 : ""
                         }
 
@@ -52,8 +89,8 @@ const Member = ({ member }) => {
                         <p className='member_main_info-p'><strong>Workout type : </strong> {member.type ?? 'N/A'}</p>
                     </div>
                 </main>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

@@ -169,7 +169,7 @@
 
     .add-member_main-form-sec-plan {
         display: flex;
-        gap: 30px;
+        gap: 60px;
     }
 
     .add-member_main-form-radio-div {
@@ -177,7 +177,7 @@
         align-items: center;
         position: relative;
         display: flex;
-        gap: 5px;
+        gap: 55px;
         font-size: 16px;
         top: 15px;
         margin-left: 5px;
@@ -186,6 +186,18 @@
     .add-member_main-form-radio-div span {
         position: relative;
         top: -19px;
+    }
+    
+    .add-members_plans{
+        margin-right: 35px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    .add-members_plan-price{
+        position: relative;
+        bottom: 50px;
+        font-size: 15px;
+        left: 30px;
     }
 }
 
