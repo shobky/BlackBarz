@@ -8,7 +8,7 @@ import { MdSpaceDashboard } from 'react-icons/md'
 import { useAuth } from '../../../contexts/AuthContext'
 import logo from '../../../assets/logo.png'
 import Nav from '../../components/Nav'
-import Schedule from '../trainerTable/Schedule'
+import { GrSchedule } from 'react-icons/gr'
 
 const Home = () => {
     const { currentUser } = useAuth()
@@ -24,7 +24,7 @@ const Home = () => {
 
             <Link className='home_dashbalinkhfods' to='/dashboard'> <MdSpaceDashboard className='nav_menu-ico' /></Link>
             <header>
-                <h1 className='home_header_logo'> <img src={logo} className="home_header_logo" alt=""/ >FX<span>3</span></h1>
+                <h1 className='home_header_logo'> <img src={logo} className="home_header_logo" alt="" />FX<span>3</span></h1>
                 <p className='home_header-slogan'>Health Fitnes Club</p>
             </header>
             <main className='home_section-1_main'>
@@ -40,6 +40,9 @@ const Home = () => {
                                 <br />
                                 <Link to="/finish-profile" className='login-link'>
                                     FINISH PROFILE</Link>
+                                <Link to="/finish-profile" className='login-link'>
+                                    <GrSchedule /></Link>
+
                             </p>
                             :
                             <>

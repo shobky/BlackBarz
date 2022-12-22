@@ -12,9 +12,9 @@ import Dashboard from './system/pages/dashboard/Dashboard'
 import FindMember from './system/pages/findMember/FindMember'
 import FindTrainer from './system/pages/findTrainer/FindTrainer'
 import Member from './system/pages/member/Member'
-import Schedule from './website/pages/trainerTable/Schedule'
 const FinishProfile = React.lazy(() => import("./website/pages/finishProfile/FinishProfile"))
 const Home = React.lazy(() => import("./website/pages/home/Home"))
+const Schedule = React.lazy(() => import('./website/pages/trainerTable/Schedule'))
 
 
 
