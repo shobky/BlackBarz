@@ -24,7 +24,7 @@ const Schedule = () => {
     // ]);
 
     const CQ = collection(db, `C`)
-    const [trainers] = useCollectionData(CQ)
+    const [trainers, Loading] = useCollectionData(CQ)
     const [fxSh, setFxSh] = useState(trainers)
 
     useEffect(() => {
@@ -70,28 +70,35 @@ const Schedule = () => {
 
     return (
         <div className='sch'>
-            <header>
-                <p className='sch_head'>FX3 SCHEDULE</p>
-                <p className='sch_sub-head'>portsaid</p>
-                <button className='sch_edit-table-btn'
-                    onClick={handleSabeBtn}>
-                    {
-                        edit === 'show' ?
-                            <BiEditAlt /> : <HiOutlineSave />
-                    }
-                </button>
-            </header>
-            <div className='trainer_tb-container'>
+            {
+                Loading ?
+                    <Loading />
+                    :
+                    <div>
+                        <header>
+                            <p className='sch_head'>FX3 SCHEDULE</p>
+                            <p className='sch_sub-head'>portsaid</p>
+                            <button className='sch_edit-table-btn'
+                                onClick={handleSabeBtn}>
+                                {
+                                    edit === 'show' ?
+                                        <BiEditAlt /> : <HiOutlineSave />
+                                }
+                            </button>
+                        </header>
+                        <div className='trainer_tb-container'>
 
-                {
-                    edit === 'show' ?
-                        <TrainerTable trainers={trainers} />
-                        :
-                        <EditTrTable edit={edit} trainers={fxSh} onChange={handleChange} />
-                }
+                            {
+                                edit === 'show' ?
+                                    <TrainerTable trainers={trainers} />
+                                    :
+                                    <EditTrTable edit={edit} trainers={fxSh} onChange={handleChange} />
+                            }
 
 
-            </div>
+                        </div></div>
+            }
+
         </div>
     );
 };
