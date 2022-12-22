@@ -6,24 +6,25 @@ import { RiUserFill } from 'react-icons/ri'
 import { IoSettingsSharp } from 'react-icons/io5'
 import { MdSpaceDashboard } from 'react-icons/md'
 import { useAuth } from '../../../contexts/AuthContext'
-import { FcGoogle } from 'react-icons/fc'
-
-
-
+import logo from '../../../assets/logo.png'
+import Nav from '../../components/Nav'
+import Schedule from '../trainerTable/Schedule'
 
 const Home = () => {
-    const { login, currentUser } = useAuth()
+    const { currentUser } = useAuth()
 
 
     return (
         <div className='home_section-1'>
             <nav className='nav-container'>
                 <Link className='nav_link'><RiUserFill /></Link>
-                <Link to='/dashboard' className='nav_link'><MdSpaceDashboard /></Link>
+                {/* <Link to='/dashboard' className='nav_link'><MdSpaceDashboard /></Link> */}
             </nav>
+            <Nav />
+
             <Link className='home_dashbalinkhfods' to='/dashboard'> <MdSpaceDashboard className='nav_menu-ico' /></Link>
             <header>
-                <h1 className='home_header_logo'>FX<span>3</span></h1>
+                <h1 className='home_header_logo'> <img src={logo} className="home_header_logo" alt=""/ >FX<span>3</span></h1>
                 <p className='home_header-slogan'>Health Fitnes Club</p>
             </header>
             <main className='home_section-1_main'>
@@ -44,17 +45,15 @@ const Home = () => {
                             <>
                                 <p className='home_section-1_main-login-txt'>Join to monitor your progress</p>
 
-                                <p onClick={() => login()} className='login-link-paragraph'>
-                                    <Link className='login-link'>
-                                        <FcGoogle className="home_login-btn-google-ico" />
-                                        SIGN IN</Link>
+                                <p className='login-link-paragraph'>
+                                    <Link to='/auth' className='login-link'>
+                                        REGISTER</Link>
                                 </p>
                             </>
                     }
 
                 </ul>
             </main>
-
         </div>
     )
 }

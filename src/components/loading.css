@@ -16,6 +16,7 @@
     letter-spacing: 5px;
     color: rgb(255, 255, 255);
     animation: loading 1s infinite;
+    margin-top: -5vh;
 }
 
 @keyframes loading {
@@ -28,16 +29,6 @@
 
 }
 
-.loading_bg-txt {
-    color: rgb(77, 77, 77);
-    position: absolute;
-    bottom: 70vh;
-    left: 5vw;
-    opacity: .3;
-    font-size: 80px;
-    letter-spacing: .5vw;
-
-}
 .loading_text-container{
     display: flex;
     flex-direction: column;
@@ -48,4 +39,9 @@
 .loading_text-container_loading{
     text-align: center;
     font-size: 12px;
+}
+.loading_logo{
+    width: 100px;
+    position: absolute;
+    bottom: 1vh;
 }

@@ -14,7 +14,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-    const navigate  = useNavigate()
+    const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     const handleCity = () => {
         if (city === 'PS') {
             setCity('PF')
-        }else {
+        } else {
             setCity('PS')
         }
     }
@@ -43,10 +43,12 @@ export const AuthProvider = ({ children }) => {
         signInWithGoogle()
         getRedirectResult(auth)
             .then((res) => {
+                navigate('/')
                 const credential = GoogleAuthProvider.credentialFromResult(res);
                 const token = credential.accessToken;
                 setCurrentUser(res.user);
                 setLoading(true)
+
 
                 //
                 console.log({ currentUser, token, credential })
@@ -79,7 +81,7 @@ export const AuthProvider = ({ children }) => {
         login,
         currentUser,
         firestoreMembers,
-        logout, 
+        logout,
         onSetVarient,
         varient,
         handleCity,

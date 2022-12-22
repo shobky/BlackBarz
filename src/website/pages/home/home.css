@@ -2,13 +2,17 @@
     .nav_menu-ico {
         display: none;
     }
+    .home_header_logo{
+        width: 50px;
+        display: flex;
+        align-items: center;
+    }
 
     .nav-container {
         position: absolute;
         top: 30px;
         right: 32vw;
     }
-
     .nav_link {
         font-size: 30px;
         margin-right: 10px;
@@ -39,7 +43,7 @@
 
     .home_section-1 header {
         color: rgb(255, 255, 255);
-        margin: 30px 0 0 15vw;
+        margin: 30px 0 0 10vw;
         width: fit-content;
 
     }
@@ -61,7 +65,6 @@
         color: rgba(255, 255, 255, 0.726);
         text-align: center;
         font-weight: 1;
-        margin-left: -35px;
     }
 
     .home_section-1_main {
@@ -192,7 +195,7 @@
         font-size: 30px;
         position: absolute;
         top: 35px;
-        right: 7vw;
+        right: 17vw;
     }
 
     .home_section-1 {

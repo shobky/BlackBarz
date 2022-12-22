@@ -1,0 +1,212 @@
+@media (width > 800px) {
+    .sch {
+        background-color: hsl(240, 100%, 8%);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .sch_head {
+        font-weight: bold;
+        font-size: 30px;
+        color: white;
+    }
+
+    .sch header {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+
+    }
+
+    .sch_sub-head {
+        font-size: 18px;
+        color: gray;
+    }
+
+    .sch_edit-table-btn {
+        position: absolute;
+        right: 100px;
+        cursor: pointer;
+        top: 50px;
+        padding: 10px;
+        font-size: 30px;
+        background-color: transparent;
+        border: none;
+        color: white;
+    }
+
+    .trainer_tb-container {
+        margin-top: 10px;
+        padding-bottom: 50px;
+        width: calc(100vw -25px);
+        overflow-x: scroll;
+    }
+
+    .sch table {
+
+        /* 8 cells * 120px */
+        /* border-collapse: collapse; */
+        /* margin: 15px;
+        position: absolute;
+        left: 0;
+        top: 150px;
+        overflow-x: scroll; */
+
+    }
+
+
+    .sch th,
+    .sch td {
+        height: 120px;
+        border: 1px solid #ccc;
+        text-align: center;
+        vertical-align: middle;
+        background-color: white;
+        border: 1px solid #00002B;
+    }
+
+    .th-head-up {
+        height: 100px !important;
+    }
+
+    .sch th {
+        font-weight: bold;
+    }
+
+    .sch input {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        position: relative;
+        width: 11vw;
+        min-width: 100px;
+        text-align: center;
+        white-space: pre-line;
+        font-weight: bold;
+        font-size: 20px;
+        color: black;
+    }
+
+    .sch .sch_emptyInput {
+        opacity: 0;
+    }
+
+    .sch-edit_emptyInput {
+        opacity: .5;
+    }
+
+}
+
+@media (width < 800px) {
+    .sch {
+        background-color: hsl(240, 100%, 8%);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .sch_head {
+        font-weight: bold;
+        font-size: 20px;
+        color: white;
+    }
+
+    .sch header {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+
+    }
+
+    .sch_sub-head {
+        font-size: 16px;
+        color: gray;
+    }
+
+    .sch_edit-table-btn {
+        position: absolute;
+        right: 20px;
+        cursor: pointer;
+        top: 43px;
+        padding: 10px;
+        font-size: 20px;
+        background-color: transparent;
+        border: none;
+        color: white;
+    }
+
+    .trainer_tb-container {
+        margin-top: 10px;
+        margin-bottom: 25px;
+        width: calc(100% - 15px);
+        overflow-x: scroll;
+        padding-left: 15px;
+    }
+
+    .sch table {
+        /* 8 cells * 120px */
+        /* border-collapse: collapse; */
+        /* margin: 15px;
+        position: absolute;
+        left: 0;
+        top: 150px;
+        overflow-x: scroll; */
+
+    }
+
+
+    .sch th,
+    .sch td {
+        height: 100px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        text-align: center;
+        vertical-align: middle;
+        background-color: white;
+        border: 1px solid #00002B;
+        border-radius: 1px;
+    }
+
+    .th-head-up {
+        height: 100px !important;
+        color: rgb(99, 99, 99);
+
+    }
+
+    .sch th {
+        font-weight: bold;
+    }
+
+    .sch input {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        position: relative;
+        width: 10vw;
+        min-width: 90px;
+        text-align: center;
+        white-space: pre-line;
+        font-weight: bold;
+        font-size: 14px;
+        color: black;
+    }
+
+    .sch .sch_emptyInput {
+        opacity: 0;
+    }
+
+    .sch-edit_emptyInput {
+        font-family: montserrat-light;
+        opacity: .4;
+    }
+
+}
