@@ -40,8 +40,8 @@ const Home = () => {
                                 <br />
                                 <Link to="/finish-profile" className='login-link'>
                                     FINISH PROFILE</Link>
-                                <Link to="/finish-profile" className='login-link'>
-                                    <GrSchedule /></Link>
+                                <Link style={{marginLeft:"15px"}} to="/finish-profile" className='login-link'>
+                                    <GrSchedule style={{color:"white"}} /></Link>
 
                             </p>
                             :
