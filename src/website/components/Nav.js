@@ -39,7 +39,7 @@ const Nav = () => {
                     <div className='mb-nav_links-group'>
                         <Link className='mb-nav_link__to'> <p className='mb-nav_link'>Home  <MdKeyboardArrowRight /> </p> </Link>
                         <Link className='mb-nav_link__to'> <p className='mb-nav_link'>RULES  <MdKeyboardArrowRight /></p></Link>
-                        <Link className='mb-nav_link__to'> <p className='mb-nav_link'>SCHEDULE <MdKeyboardArrowRight /> </p> </Link>
+                        <Link to='/schedule' className='mb-nav_link__to'> <p className='mb-nav_link'>SCHEDULE <MdKeyboardArrowRight /> </p> </Link>
                         {/* <p><Link className='mb-nav_link'>Home</Link> </p> */}
                     </div>
                 </div>

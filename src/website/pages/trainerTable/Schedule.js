@@ -7,6 +7,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import EditTrTable from '../../components/trainerTable/EditTrTable';
 import { BiEditAlt } from 'react-icons/bi'
 import { HiOutlineSave } from 'react-icons/hi';
+import Loading from '../../../components/Loading';
 
 const Schedule = () => {
 
@@ -24,7 +25,7 @@ const Schedule = () => {
     // ]);
 
     const CQ = collection(db, `C`)
-    const [trainers, Loading] = useCollectionData(CQ)
+    const [trainers] = useCollectionData(CQ)
     const [fxSh, setFxSh] = useState(trainers)
 
     useEffect(() => {
@@ -71,9 +72,7 @@ const Schedule = () => {
     return (
         <div className='sch'>
             {
-                Loading ?
-                    <Loading />
-                    :
+                trainers ?
                     <div>
                         <header>
                             <p className='sch_head'>FX3 SCHEDULE</p>
@@ -97,6 +96,7 @@ const Schedule = () => {
 
 
                         </div></div>
+                    : <Loading />
             }
 
         </div>

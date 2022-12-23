@@ -27,16 +27,19 @@ const EditTrTable = ({ trainers, onChange }) => {
                             />
                         </td>
                         {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day, j) => (
-                            <td key={j}>
+                            <td  key={j}>
                                 {trainer[day].map((session, k) => (
-                                    <input
-                                        type="text"
-                                        value={session}
-                                        onChange={(e) => onChange(e, i, day, k)}
-                                        key={k}
-                                        className={session === '00-00' ? 'sch-edit_emptyInput' : ""}
+                                    <div className='sch_input_div'>
+                                        <input
+                                            type="text"
+                                            value={session}
+                                            onChange={(e) => onChange(e, i, day, k)}
+                                            key={k}
+                                            className={session === '00-00' ? 'sch-edit_emptyInput' : ""}
 
-                                    />
+                                        />
+                                    </div>
+
                                 ))}
                             </td>
                         ))}

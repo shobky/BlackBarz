@@ -26,15 +26,17 @@ const TrainerTable = ({ trainers }) => {
                             />
                         </td>
                         {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day, j) => (
-                            <td key={j}>
+                            <td  key={j}>
                                 {trainer[day].map((session, k) => (
-                                    <input
-                                        disabled={true}
-                                        type="text"
-                                        value={session}
-                                        key={k}
-                                        className={session === '00-00' ? 'sch_emptyInput' : ""}
-                                    />
+                                    <div className='sch_input_div'>
+                                        <input
+                                            disabled={true}
+                                            type="text"
+                                            value={session}
+                                            key={k}
+                                            className={session === '00-00' ? 'sch_emptyInput' : ""}
+                                        />
+                                    </div>
                                 ))}
                             </td>
                         ))}

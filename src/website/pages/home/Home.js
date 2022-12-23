@@ -9,6 +9,7 @@ import { useAuth } from '../../../contexts/AuthContext'
 import logo from '../../../assets/logo.png'
 import Nav from '../../components/Nav'
 import { GrSchedule } from 'react-icons/gr'
+import { AiFillSchedule } from 'react-icons/ai'
 
 const Home = () => {
     const { currentUser } = useAuth()
@@ -40,8 +41,11 @@ const Home = () => {
                                 <br />
                                 <Link to="/finish-profile" className='login-link'>
                                     FINISH PROFILE</Link>
-                                <Link style={{marginLeft:"15px"}} to="/finish-profile" className='login-link'>
-                                    <GrSchedule style={{color:"white"}} /></Link>
+                                <br />
+                                <br />
+
+                                <Link style={{display:"flex", alignItems:"center", width:"fit-content", border:'none'}} to="/schedule" className='login-link'>
+                                    <AiFillSchedule style={{ color: "white", fontSize: "30px" }} /></Link>
 
                             </p>
                             :
