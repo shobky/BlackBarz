@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { auth, signInWithGoogle } from '../firebase/Config'
-import { getRedirectResult, GoogleAuthProvider, signOut } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
 import { collection } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
@@ -25,6 +25,8 @@ export const AuthProvider = ({ children }) => {
     const [varient, setVarient] = useState('')
 
     const [city, setCity] = useState('PS')
+    const [authError, setAuthError] = useState('')
+    const [buffer, setBuffer] = useState(false)
 
     const handleCity = () => {
         if (city === 'PS') {
@@ -38,36 +40,56 @@ export const AuthProvider = ({ children }) => {
         setVarient(vrt)
     }
 
+    const EmailAndPasswordSignup = (email, password) => {
+        setBuffer(true)
+        createUserWithEmailAndPassword(auth, email, password).then(() => {
+            navigate('/')
+            setBuffer(false)
+        }).catch((err) => {
+            setAuthError(err.message)
+            setBuffer(false)
+        })
+    }
 
-    const login = () => {
-        signInWithGoogle()
-        getRedirectResult(auth)
-            .then((res) => {
-                navigate('/')
-                const credential = GoogleAuthProvider.credentialFromResult(res);
-                const token = credential.accessToken;
-                setCurrentUser(res.user);
-                setLoading(true)
+    const EmailAndPasswordLogin = (email, password) => {
+        setBuffer(true)
+        signInWithEmailAndPassword(auth, email, password).then(() => {
+            setBuffer(false)
+            navigate('/')
+        }).catch((error) => {
+            setBuffer(false)
+            setAuthError(error.message)
+        })
+    }
 
+    const login = async () => {
+        setBuffer(true)
+        navigate('/')
+        signInWithGoogle().then(() => {
+            getRedirectResult(auth)
+                .then(() => {
+                    setLoading(true)
+                    setBuffer(false)
+                })
+                .catch((err) => {
+                    setError(err.message)
+                    // const credential = GoogleAuthProvider.credentialFromError(err)
+                    setLoading(true)
+                    setBuffer(false)
 
-                //
-                console.log({ currentUser, token, credential })
-            })
-            .catch((err) => {
-                setError(err.message)
-                // const credential = GoogleAuthProvider.credentialFromError(err)
-                setLoading(true)
+                    //
+                    console.log(error, 'er')
 
-                //
-                console.log(error, 'er')
+                })
 
-            })
+        })
+
 
     }
 
     const logout = () => {
         signOut(auth).then(() => {
-            navigate('/')
+            navigate('/login')
         })
     }
 
@@ -79,13 +101,17 @@ export const AuthProvider = ({ children }) => {
 
     const values = {
         login,
+        EmailAndPasswordSignup,
+        EmailAndPasswordLogin,
         currentUser,
+        authError,
         firestoreMembers,
         logout,
         onSetVarient,
         varient,
         handleCity,
-        city
+        city,
+        buffer
     }
 
     return (

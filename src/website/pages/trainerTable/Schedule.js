@@ -8,6 +8,7 @@ import EditTrTable from '../../components/trainerTable/EditTrTable';
 import { BiEditAlt } from 'react-icons/bi'
 import { HiOutlineSave } from 'react-icons/hi';
 import Loading from '../../../components/Loading';
+import Nav from '../../components/Nav';
 
 const Schedule = () => {
 
@@ -74,6 +75,7 @@ const Schedule = () => {
             {
                 trainers ?
                     <div>
+                        <Nav />
                         <header>
                             <p className='sch_head'>FX3 SCHEDULE</p>
                             <p className='sch_sub-head'>portsaid</p>

@@ -597,7 +597,8 @@
     .find-member-ul-li {
         width: fit-content;
         display: grid;
-        grid-template-columns: 160px 150px 150px 100px 120px 100px 50px;
+        grid-template-columns: 160px 150px 150px 100px 120px 100px 50px 20px;
+
         margin-bottom: 15px;
         color: rgba(255, 255, 255, 0.800);
         border-bottom: 1px solid rgb(29, 28, 28);
@@ -633,6 +634,24 @@
         font-size: 20px;
         color: rgb(179, 179, 179);
     }
+    .find-member_payment-action__disabled {
+        font-size: 22px;
+        background-color: transparent;
+        border: none;
+        color: rgb(100, 100, 100);
+    }
+
+    .find-member_payment-action {
+        font-size: 22px;
+        background-color: transparent;
+        border: none;
+        color: gold;
+        cursor: pointer;
+    }
+    .find-member_filter_hidden {
+        display: none;
+    }
+
 
     /* .find-member-ul-li_buton-option {
         cursor: pointer;

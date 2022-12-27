@@ -355,12 +355,12 @@ const FindMember = ({ firestoreMembers, isClub }) => {
 
                                     }
                                     <button style={{ cursor: "pointer" }} onDoubleClick={() => handleCheckingIn(member)} className={member.checked === true ? 'find-member-ul-li_chk-in-btn__checked' : 'find-member-ul-li_chk-in-btn'}><BsCalendarCheckFill /></button>
-                                    {
+                                    {/* {
                                         member.frozen ?
                                             <buttonn onDoubleClick={() => handleRemoveFreeze(member)} className='find-member_frozen' style={{ cursor: "pointer" }}><FaStopwatch /></buttonn>
                                             :
                                             <buttonn onDoubleClick={() => handleFreeze(member)} style={{ cursor: "pointer" }}><FaStopwatch /></buttonn>
-                                    }
+                                    } */}
                                     {
                                         member.session >= member.plan || (member.paymentmonth !== msMonth && member.paymentday <= msDay && !member.frozen) ?
                                             <button onClick={() => onResetSessions(member)} style={{ cursor: "pointer" }} className="find-member_payment-action"><GiTwoCoins /></button>

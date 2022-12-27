@@ -1,6 +1,6 @@
 @media (width > 800px) {
     .sch {
-        background-color: hsl(240, 100%, 8%);
+        background-color: hsl(0, 0%, 0%);
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -27,11 +27,11 @@
 
     .sch_edit-table-btn {
         position: absolute;
-        right: 100px;
+        right: 125px;
         cursor: pointer;
-        top: 50px;
+        top: 42px;
         padding: 10px;
-        font-size: 30px;
+        font-size: 28px;
         background-color: transparent;
         border: none;
         color: white;
@@ -102,9 +102,10 @@
 
 @media (width < 800px) {
     .sch {
-        background-color: hsl(240, 100%, 8%);
+        background-color: hsl(0, 0%, 0%);
         width: 100vw;
         display: flex;
+        color: white;
         flex-direction: column;
 
     }
@@ -116,7 +117,7 @@
     }
 
     .sch header {
-        padding-top: 50px;
+        padding-top: 37px;
         margin-left: 50px;
         margin-bottom: 35px;
 
@@ -129,11 +130,11 @@
 
     .sch_edit-table-btn {
         position: absolute;
-        right: 20px;
+        right: 60px;
         cursor: pointer;
-        top: 43px;
+        top: 28px;
         padding: 10px;
-        font-size: 20px;
+        font-size: 26px;
         background-color: transparent;
         border: none;
         color: white;
@@ -205,7 +206,7 @@
 
 }
 
-.sch_input_div{
+.sch_input_div {
     display: flex;
     flex-direction: column;
 }

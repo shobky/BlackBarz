@@ -1,0 +1,127 @@
+
+
+@media (width > 800px) {
+    .rules {
+        background-color: hsl(0, 0%, 0%);
+        color: white;
+        height: 100vh;
+
+
+    }
+
+    .rules_header {
+        font-size: 25px;
+        padding-top: 60px;
+        margin-left: 150px;
+    }
+
+    .rules_list li {
+        font-family: 'Noto Kufi Arabic', sans-serif;
+        font-weight: bold;
+        text-align: right;
+        list-style: none;
+        list-style-position: inside;
+        font-size: 1rem;
+        margin-bottom: 1px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 15px;
+        background-color: white;
+        color: black;
+        height: 70px;
+        position: relative;
+    }
+
+    .rules_list_num {
+        background-color: #0065A3;
+        min-width: 40px;
+        color: white;
+        max-width: 40px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        font-weight: bold;
+        font-family: montserrat-bold;
+        font-size: 20px;
+    }
+
+    .rules_list {
+        margin-top: 10vh;
+        max-width: 80%;
+        min-width: 80%;
+        position: absolute;
+        right: 10vw;
+    }
+    .rules_footer {
+        font-weight: bold;
+        font-size: 25px;
+        position: absolute;
+        top: 90vh;
+        left: 15vw;
+    }
+
+}
+
+@media (width < 799px) {
+    .rules {
+        background-color: hsl(0, 0%, 0%);
+        color: white;
+        height: 100vh;
+
+    }
+
+    .rules_header {
+        font-size: 25px;
+        padding-top: 37px;
+        margin-left: 50px;
+    }
+
+    .rules_list li {
+        font-family: 'Noto Kufi Arabic', sans-serif;
+        font-weight: bold;
+        text-align: right;
+        list-style: none;
+        list-style-position: inside;
+        font-size: 1rem;
+        margin-bottom: 1px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 15px;
+        background-color: white;
+        color: black;
+        height: 65px;
+        position: relative;
+    }
+
+    .rules_list_num {
+        background-color: #0065A3;
+        min-width: 40px;
+        color: white;
+        max-width: 40px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        font-weight: bold;
+        font-family: montserrat-bold;
+        font-size: 20px;
+    }
+
+    .rules_list {
+        width: fit-content;
+        margin-top: 14vh;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .rules_footer {
+        font-weight: bold;
+        font-size: 21px;
+        margin: 30px 50px;
+    }
+}
