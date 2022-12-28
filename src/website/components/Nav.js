@@ -8,6 +8,8 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import noPhoto from '../../assets/noprofile.webp'
+import { RiLogoutBoxLine, RiLogoutBoxRLine } from 'react-icons/ri'
+import { IoPerson } from 'react-icons/io5'
 import './nav.css'
 
 const Nav = () => {
@@ -45,7 +47,13 @@ const Nav = () => {
             {
                 <div id='mb-nav-menu' className='mb-nav-container mb-nav-menu'>
                     <div onClick={() => currentUser ? navigate(`/${currentUser?.displayName ?? currentUser?.email}`) : ""} className='mb-nav_profile-info'>
-                        <img alt='' className='mb-nav_profile-img' src={currentUser?.photoURL ?? noPhoto} />
+                        {
+                            currentUser?.photoURL ?
+                                <img alt='' className='mb-nav_profile-img' src={currentUser?.photoURL} />
+                                :
+                                // <img alt='' className='mb-nav_profile-img' src={noPhoto} />
+                                <IoPerson onClick={() => !currentUser ? navigate('/login') : navigate(`/${currentUser?.displayName}`)} className='mb-nav_noxprofile-ico' />
+                        }
                         <p className='mb-nav_profile-name'>{currentUser?.displayName?.slice(0, 15) ?? currentUser?.email}</p>
                     </div>
                     <div className='mb-nav_links-group'>
@@ -61,7 +69,7 @@ const Nav = () => {
                             </div>
                             : ""
                     }
-                    <button className={currentUser ? 'nav_logout-btn' : 'nav_login-btn'} onClick={handleAuthFromNav}>{currentUser ? 'Logout' : 'Login'} </button>
+                    <button className={currentUser ? 'nav_logout-btn' : 'nav_login-btn'} onClick={handleAuthFromNav}>{currentUser ? <><RiLogoutBoxLine className='nav_logout-ico' /> Logout</> : <><RiLogoutBoxRLine className='nav_login-ico' /> Login</>} </button>
                 </div>
             }
         </div>
