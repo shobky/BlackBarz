@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { auth, signInWithGoogle } from '../firebase/Config'
 import { createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
-import { collection } from 'firebase/firestore'
+import { collection, doc, getDoc } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { db } from '../firebase/Config'
 import { Navigate, useNavigate } from "react-router"
@@ -16,6 +16,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState()
+    const [member, setMember] = useState()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
@@ -27,6 +28,16 @@ export const AuthProvider = ({ children }) => {
     const [city, setCity] = useState('PS')
     const [authError, setAuthError] = useState('')
     const [buffer, setBuffer] = useState(false)
+
+    useEffect(() => {
+        const getMember = async () => {
+            const docRef = doc(db, "members", currentUser?.email);
+            const docSnap = await getDoc(docRef);
+            setMember(docSnap.data());
+
+        }
+        getMember()
+    }, [currentUser])
 
     const handleCity = () => {
         if (city === 'PS') {
@@ -104,6 +115,7 @@ export const AuthProvider = ({ children }) => {
         EmailAndPasswordSignup,
         EmailAndPasswordLogin,
         currentUser,
+        member,
         authError,
         firestoreMembers,
         logout,

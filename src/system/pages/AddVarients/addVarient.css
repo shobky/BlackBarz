@@ -1,0 +1,55 @@
+.add-varient-inputs-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard_varient {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard_varient-fomr_main {
+    background-color: black;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 30vh;
+}
+
+
+
+.add-varient_input {
+    background-color: transparent;
+    border: 1px solid white;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 25px;
+    color: white;
+
+}
+
+.dashboard_varient_btn {
+    background-color: #0065A3;
+    font-size: 18px;
+    color: white;
+    padding: 15px 35px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 25px;
+    margin-top: 50px;
+
+
+}
+.dashboard_varients_plans{
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    align-items: center;
+    border-bottom: .1px solid rgba(255, 255, 255, 0.514);
+    padding-bottom: 15px;
+}

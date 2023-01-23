@@ -1,0 +1,12 @@
+.view-day-workots{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.view-day-workout_li{
+    list-style: none;
+}
+
+.view-day-workouts-ul{
+   text-align: center;
+}

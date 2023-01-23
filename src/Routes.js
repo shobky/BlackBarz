@@ -15,11 +15,13 @@ import Member from './system/pages/member/Member'
 import Signup from './auth/Signup'
 import Rules from './website/pages/rules/Rules'
 import UserChangeProfile from './website/pages/profile/UserChangeProfile'
+import Payments from './system/pages/payments/Payments'
+import AddDayWorkouts from './system/pages/addDayWorkots/AddDayWorkouts'
+import UserView from './website/pages/dayWorkouts/UserView'
+import UserViewLoss from './website/pages/dayWorkouts/UserViewLoss'
 const FinishProfile = React.lazy(() => import("./website/pages/finishProfile/FinishProfile"))
 const Home = React.lazy(() => import("./website/pages/home/Home"))
 const Schedule = React.lazy(() => import('./website/pages/trainerTable/Schedule'))
-
-
 
 const AllRoutes = () => {
     const { firestoreMembers, city, currentUser } = useAuth()
@@ -38,17 +40,16 @@ const AllRoutes = () => {
             {/* ADMIN */}
 
             <Route path="/dashboard" element={<Dashboard firestoreMembers={firestoreMembers} />} />
+            <Route path="/dashboard/add-day-workouts" element={<AddDayWorkouts />} />
             <Route path="/dashboard/add-member" element={<AddMember />} />
             <Route path="/dashboard/find-member" element={<FindMember firestoreMembers={firestoreMembers} />} />
             <Route path="/dashboard/add-varient" element={<AddVarientsForm />} />
             <Route path="/dashboard/trainers" element={<FindTrainer />} />
-            <Route path="/dashboard/club" element={<FindMember
-                isClub={true}
-                firestoreMembers={dayChikinMembers}
-            />} />
+            <Route path="/dashboard/payments" element={<Payments />} />
+
             {
                 firestoreMembers?.map((member) => (
-                    <Route key={member.email} path={`/dashboard/find-member/${member.email}`} element={<Member member={member} />} />
+                    <Route key={member.email} path={`/${member.email}`} element={<Member member={member} />} />
                 ))
             }
 
@@ -61,6 +62,12 @@ const AllRoutes = () => {
             </Suspense>} />
             <Route path="/rules" element={<Suspense fallback={<Loading />}>
                 <Rules />
+            </Suspense>} />
+            <Route path="/workouts-gain" element={<Suspense fallback={<Loading />}>
+                <UserView />
+            </Suspense>} />
+            <Route path="/workouts-loss" element={<Suspense fallback={<Loading />}>
+                <UserViewLoss />
             </Suspense>} />
             <Route path={`/${currentUser?.displayName ?? currentUser?.email}`} element={<Suspense fallback={<Loading />}>
                 <UserChangeProfile />

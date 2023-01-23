@@ -2,7 +2,8 @@
     .nav_menu-ico {
         display: none;
     }
-    .home_header_logo{
+
+    .home_header_logo {
         width: 50px;
         display: flex;
         align-items: center;
@@ -13,6 +14,7 @@
         top: 30px;
         right: 32vw;
     }
+
     .nav_link {
         font-size: 30px;
         margin-right: 10px;
@@ -142,7 +144,7 @@
         transition: ease-in-out .4s;
     }
 
-    .finish-profile-link{
+    .finish-profile-link {
         color: white;
         font-family: sans-serif;
         text-decoration: none;
@@ -152,6 +154,7 @@
         font-weight: bold;
         transition: ease-in-out .4s;
     }
+
     .login-link-paragraph {
         margin-top: 25px;
     }
@@ -202,16 +205,17 @@
 
     }
 
-     .home_section-1 header {
+    .home_section-1 header {
         color: rgb(255, 255, 255);
         margin: 35px;
         align-items: center;
         display: flex;
     }
 
-    .home_header_logo-img{
+    .home_header_logo-img {
         width: 80px;
     }
+
     .home_header_logo {
         font-family: sans-serif;
         font-size: 30px;
@@ -225,7 +229,7 @@
 
     .home_header-slogan {
         font-family: montserrat-regular;
-        font-size: 17px;
+        font-size: 20px;
         color: rgba(255, 255, 255, 0.692);
         font-weight: 1;
     }
@@ -233,7 +237,7 @@
     .home_section-1_main {
         height: 100%;
         position: absolute;
-        right: 20vw;
+        right: 30vw;
         top: 0;
         width: 25vw;
         display: grid;
@@ -254,6 +258,7 @@
         top: 0;
         right: -20vw;
         position: absolute;
+
     }
 
     .home_section-1_main-grid-bottom {
@@ -262,16 +267,16 @@
     }
 
     .home_section-1_main-list {
-        margin-top: 30vh;
+        margin-top: 40vh;
         list-style: none;
         z-index: 2;
+        margin-right: 10vw;
     }
 
     .home_section-1_main-list li {
         font-family: montserrat-regular;
         font-weight: bold;
-        font-size: 35px;
-        margin-bottom: 3px;
+        font-size: 45px;
     }
 
     .home_section-1_main-list li span {
@@ -284,7 +289,7 @@
     .home_section-1_main-login-txt {
         margin-top: 50px;
         font-family: sans-serif;
-        font-size: 14px;
+        font-size: 18px;
         color: #0065A3;
     }
 
@@ -293,24 +298,25 @@
         font-family: sans-serif;
         text-decoration: none;
         border: 1px solid white;
-        padding: 14px ;
+        padding: 14px;
         font-size: 18px;
         transition: ease-in-out .1s;
+        border-radius: 25px;
 
     }
-    .finish-profile-link{
+
+    .finish-profile-link {
         color: white;
         font-family: sans-serif;
         text-decoration: none;
-        border: 1px solid white;
-        padding: 6 5px 6 5px;
-        font-size: 14px;
+        width: fit-content;
+        font-size: 16px;
         font-weight: bold;
         transition: ease-in-out .4s;
     }
 
     .login-link-paragraph {
-        margin-top: 80px;
+        margin-top: 50px;
     }
 
     .login-link:hover {
@@ -331,17 +337,53 @@
     }
 
     .home_welcome-msg {
-        margin-top: 50px;
-        font-size: 20px;
+        margin-top: 25px;
+        font-size: 16px;
         font-family: sans-serif;
+        border: 1px solid white;
+        padding: 10px 7px 10px 7px;
+        border-radius: 25px;
+        width: fit-content;
 
 
     }
 
     .home_welcome-msg span {
         font-family: sans-serif;
-        font-size: 20px;
+        font-size: 16px;
         color: #ffffff;
-    } 
+    }
 
+}
+
+.home_cone-ico {
+    font-size: 22px;
+}
+
+.home_trafic_low {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    font-size: 20px;
+    gap: 10px;
+    font-weight: bold;
+    color: rgb(36, 250, 107);
+}
+.home_trafic_high {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    font-size: 20px;
+    gap: 10px;
+    font-weight: bold;
+    color: rgb(255, 36, 36);
+}
+.home_trafic_ok {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    font-size: 20px;
+    gap: 10px;
+    font-weight: bold;
+    color: rgb(250, 136, 36);
 }

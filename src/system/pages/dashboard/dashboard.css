@@ -7,12 +7,11 @@
 
 .dashboard_content {
     padding: 60px 150px;
-    gap: 5px;
+    gap: 10px;
     display: flex;
     justify-content: center;
     position: relative;
     right: -30px;
-
 }
 
 .dashboard_admin-photo {
@@ -29,10 +28,22 @@
     position: relative;
     padding: 25px;
     width: 300px;
+    border-radius: 25px;
+
+}
+
+.dashboard_top-div:hover {
+    background: rgb(87, 87, 87);
+
 }
 
 .dashboard_top-div__moth-ico {
     background-color: rgb(51, 214, 29);
+}
+
+.dashboard_top-div__moth-ico:hover {
+    background-color: rgb(62, 242, 38);
+
 }
 
 .dashboard_top-div h1 {
@@ -94,7 +105,7 @@
 
 .dashboard_med-link-varient {
     text-decoration: none;
-    width:170px;
+    width: 170px;
     color: rgb(255, 255, 255);
     height: 60px;
     background-color: #0065A3;
@@ -106,6 +117,7 @@
     font-size: 18px;
     padding: 0 25px 0 25px;
     justify-content: space-between;
+    border-radius: 25px;
 }
 
 .dashboard_var-ico {
@@ -114,52 +126,6 @@
 
 .dashboard_med-link-varient:hover {
     opacity: .8;
-}
-
-.dashboard_varient-fomr_main {
-    background-color: black;
-    color: white;
-    min-height: 100vh;
-    margin-left: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.dashboard_varients_plans {
-    display: flex;
-    gap: 15px;
-}
-
-.dashboard_varient {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.dashboard_varient input {
-    background-color: transparent;
-    border: 1px solid rgb(224, 224, 224);
-    padding: 15px;
-    font-size: 20px;
-    height: 40px;
-    color: white;
-    margin-top: 25px;
-}
-
-.dashboard_varient_btn {
-    background-color: rgb(255, 230, 0);
-    font-weight: bold;
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 25px;
-    text-align: center;
-    margin-top: 55px;
-    cursor: pointer;
-    margin-left: 50px;
-    margin-right: 50px;
-
 }
 
 .dashboard_plnas_var-delete-btn {
@@ -171,4 +137,37 @@
     color: red;
     font-size: 25px;
     cursor: pointer;
+}
+
+.dashboard_bottom {
+    display: flex;
+    gap: 3%;
+}
+
+.dashboard_dayworkout-header {
+    opacity: .8;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dashboard_workout-list {
+    margin: 15px 5px;
+}
+
+.dashboard_bottom_dayworkout-div {
+    border: 1px solid rgba(255, 255, 255, 0.235);
+    padding: 17px 25px 5px 25px;
+    border-radius: 25px;
+    height: 26.5vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.dashboard_dayworkout-link{
+    color: white;
+    font-size: 25px;
+    margin-top: 20%;
 }

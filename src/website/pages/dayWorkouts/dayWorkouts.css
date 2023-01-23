@@ -1,0 +1,55 @@
+.dayworkouts_container {
+    color: white;
+    z-index: -1;
+}
+
+.dayworkouts_gain {
+    background-color: rgb(30, 29, 29);
+    height: 50%;
+}
+
+.dayworkouts_loss {
+    background-color: rgb(15, 143, 255);
+    height: 50%;
+    color: black;
+}
+
+.dayworkouts_gain,
+.dayworkouts_loss {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.userView_back-link {
+    margin: 20px;
+    font-size: 20px;
+    position: relative;
+    top: 20px;
+    color: black;
+}
+
+.userView_header {
+    margin-top: 35px;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.userView-day-workouts {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+    height: 77%;
+}
+
+.user-view_workou-header {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.user-view_workou-list{
+    opacity: .8;
+}

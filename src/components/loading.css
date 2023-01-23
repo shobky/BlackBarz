@@ -1,3 +1,11 @@
+.laoding_logo {
+    font-size: 45px;
+    font-family: montserrat-bold;
+    letter-spacing: 5px;
+    color: rgb(255, 255, 255);
+    animation: loading 1s infinite;
+    margin-top: -5vh;
+}
 .loading-container {
     background-color: rgb(0, 0, 0);
     width: 100%;
@@ -10,14 +18,7 @@
     justify-content: center;
 }
 
-.laoding_logo {
-    font-size: 45px;
-    font-family: montserrat-bold;
-    letter-spacing: 5px;
-    color: rgb(255, 255, 255);
-    animation: loading 1s infinite;
-    margin-top: -5vh;
-}
+
 
 @keyframes loading {
     30% {

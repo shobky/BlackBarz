@@ -75,10 +75,8 @@ const Schedule = () => {
             {
                 trainers ?
                     <div>
-                        <Nav />
+                        <Nav active={'schedule'} />
                         <header>
-                            <p className='sch_head'>FX3 SCHEDULE</p>
-                            <p className='sch_sub-head'>portsaid</p>
                             <button className='sch_edit-table-btn'
                                 onClick={handleSabeBtn}>
                                 {

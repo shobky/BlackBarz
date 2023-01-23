@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './dashboard.css'
 import Nav from '../../components/nav/Nav'
 import { MdAttachMoney, MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { useAuth } from '../../../contexts/AuthContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import greprog from '../../../assets/greenprgo.png'
 import oragneNew from '../../../assets/oragneNew.png'
 import { SiFuturelearn } from 'react-icons/si'
-import { collection, doc } from 'firebase/firestore'
+import { collection, deleteDoc, doc, setDoc, updateDoc } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { db } from '../../../firebase/Config'
 import { AiTwotoneCalendar } from 'react-icons/ai'
 import { TbLetterC } from 'react-icons/tb'
 import { CgGym } from 'react-icons/cg'
+import { RiPushpin2Line } from 'react-icons/ri'
+import { IoIosRemove, IoMdRemoveCircle } from 'react-icons/io'
 
 
 
@@ -24,8 +26,27 @@ const Dashboard = ({ firestoreMembers }) => {
 
     const dayPaymentQ = collection(db, `dayPayments${city}`)
     const [dayPayments] = useCollectionData(dayPaymentQ)
+    const navigate = useNavigate()
+
+    const dayWorkoutsQuery = collection(db, `dayWorkouts`)
+    const [dayWorkoutsData] = useCollectionData(dayWorkoutsQuery)
+
+    const [newWorkout, setNewWorkout] = useState()
 
 
+    const handleAddWorkouts = (e) => {
+        e.preventDefault()
+        setDoc(doc(db, `dayWorkouts/${newWorkout}`,), {
+            str: newWorkout
+        }).then(() => {
+            document.getElementById('addNewWorkoutsFom').reset()
+        })
+    }
+    const handleRemoveWorkouts = (str) => {
+        deleteDoc(doc(db, `dayWorkouts/${str}`), {
+        }).then(() => {
+        })
+    }
 
     useEffect(() => {
         const countDayTotal = () => {
@@ -54,9 +75,9 @@ const Dashboard = ({ firestoreMembers }) => {
                 <Nav page="dashboard" />
             </nav>
             <main className='dashboard_content'>
-                <div className=" dashboard_top-div dashboard_top-div__members">
+                <div onClick={() => navigate('/dashboard/find-member')} className=" dashboard_top-div dashboard_top-div__members">
                     <h1>Members</h1>
-                    <Link className='dashbaord_top-div_link'>View list <MdOutlineKeyboardArrowDown /></Link>
+                    <Link to="/dashboard/find-member" className='dashbaord_top-div_link'>View list <MdOutlineKeyboardArrowDown /></Link>
                     <div className='dahboard_flex'>
                         <p>{firestoreMembers?.length}</p>
                         <img className='dashboard_top_photo' src={greprog} alt="" />
@@ -103,11 +124,18 @@ const Dashboard = ({ firestoreMembers }) => {
                 </div>
 
             </main>
-            <div className='dashboard_med_add-collec'>
-                <Link className='dashboard_med-link-varient' onClick={() => onSetVarient('plans')} to="/dashboard/add-varient"><AiTwotoneCalendar className='dashboard_var-ico'/>Add Plans</Link>
-                <Link className='dashboard_med-link-varient' onClick={() => onSetVarient('trainers')} to="/dashboard/add-varient"><TbLetterC className='dashboard_var-ico'/>Add Trainers</Link>
-                <Link className='dashboard_med-link-varient' onClick={() => onSetVarient('workouts')} to="/dashboard/add-varient"><CgGym className='dashboard_var-ico'/>Add Workouts</Link>
+            <div className='dashboard_bottom'>
+                <div className='dashboard_med_add-collec'>
+                    <Link className='dashboard_med-link-varient' onClick={() => onSetVarient('plans')} to="/dashboard/add-varient"><AiTwotoneCalendar className='dashboard_var-ico' />Add Plans</Link>
+                    <Link className='dashboard_med-link-varient' onClick={() => onSetVarient('trainers')} to="/dashboard/add-varient"><TbLetterC className='dashboard_var-ico' />Add Trainers</Link>
+                    <Link className='dashboard_med-link-varient' onClick={() => onSetVarient('workouts')} to="/dashboard/add-varient"><CgGym className='dashboard_var-ico' />Add Workouts</Link>
+                </div>
+                <div className='dashboard_bottom_dayworkout-div'>
+                    <p className='dashboard_dayworkout-header'>Work out of the day</p>
+                    <Link to='/dashboard/add-day-workouts' className='dashboard_dayworkout-link'>Add</Link>
+                </div>
             </div>
+
         </div>
     )
 }

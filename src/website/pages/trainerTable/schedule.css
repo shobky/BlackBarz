@@ -5,7 +5,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
     }
 
     .sch_head {
@@ -16,8 +15,6 @@
 
     .sch header {
         padding-top: 50px;
-        margin-left: 150px;
-
     }
 
     .sch_sub-head {
@@ -117,7 +114,7 @@
     }
 
     .sch header {
-        padding-top: 37px;
+        padding-top: 25px;
         margin-left: 50px;
         margin-bottom: 35px;
 
@@ -132,12 +129,12 @@
         position: absolute;
         right: 60px;
         cursor: pointer;
-        top: 28px;
+        top: 14px;
         padding: 10px;
-        font-size: 26px;
+        font-size: 27px;
         background-color: transparent;
         border: none;
-        color: white;
+        color: rgba(255, 255, 255, 0.684);
     }
 
     .trainer_tb-container {

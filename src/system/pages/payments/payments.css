@@ -1,0 +1,14 @@
+.payments_container{
+    background-color: black;
+    height: 100vh;
+    padding-left: 100px;
+    color: white;
+}
+.payments_head{
+    padding: 50px;
+    color: #1487ce;
+}
+
+.payment_table_container{
+    margin: 5px 50px;
+}
