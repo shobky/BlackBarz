@@ -163,8 +163,10 @@
         color: red;
     }
 
-    .add-member_main_form-msg {
-        color: rgb(0, 224, 86);
+    .add-member-msg-ms {
+        background-color: rgb(0, 224, 86);
+        color: white;
+        padding: 5px;
     }
 
     .add-member_main-form-sec-plan {

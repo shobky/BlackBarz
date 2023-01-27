@@ -40,7 +40,7 @@ const Home = () => {
                         <li className='home_section-1_slogan-txt'>FIT. FIGHT. FLOW. <span>FX3</span></li>
                         <p className={traffic > 30 ? 'home_trafic_high' : traffic < 15 ? 'home_trafic_low' : 'home_trafic_ok'}><TbTrafficCone className='home_cone-ico' /> {traffic > 30 ? 'High' : traffic < 15 ? 'Low' : 'Moderate'}</p>
                         {
-                            !member?.finished ? (
+                           currentUser &&  !member?.finished ? (
                                 <p className="home_welcome-msg">
                                     <Link to="/finish-profile" className="finish-profile-link">
                                         FINISH PROFILE

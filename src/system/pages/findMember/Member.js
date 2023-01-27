@@ -66,7 +66,7 @@ const Member = ({ member, date }) => {
                 }</p>
             <CheckinBtn key={member.mid} member={member} />
             {
-                member.session >= member.plan.sessions || (member.paymentmonth !== date.msMonth && member.paymentday <= date.msDay) ?
+                member.session >= member.plan.sessions || member.lastPaid == null || member.lastPaid?.month < date.month ?
                     <button onClick={() => navigate(`/${member.email}`)} style={{ cursor: "pointer" }} className="find-member_payment-action"><GiTwoCoins /></button>
                     :
                     <button className="find-member_payment-action__disabled"><GiTwoCoins /></button>

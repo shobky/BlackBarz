@@ -57,27 +57,18 @@ const AddMember = () => {
     const [msg, setMsg] = useState('')
     const [error, setError] = useState('')
 
-
     const [mail, setMail] = useState('')
     const [number, setNumber] = useState('')
     const [name, setName] = useState('')
-    // const [weight, setWeight] = useState('')
-    // const [height, setHeight] = useState('')
-
-
 
     const [payment, setPayment] = useState('full');
     const [plan, setPlan] = useState('12');
     const [Trainer, setTrainer] = useState('0');
     const [workType, setWorkType] = useState('0');
-    // const [city, setCity] = useState([]);
-    // const [days, setDays] = useState([]);
-    // const [hours, setHours] = useState([]);
-
     const { city } = useAuth()
 
 
-    const [selectedPlan, setSelectedPlan] = useState(firestorePlans ?? [0]);
+    const [selectedPlan, setSelectedPlan] = useState('');
 
     const handleChangeWorkType = (event) => {
         setWorkType(event.target.value);
@@ -209,6 +200,8 @@ const AddMember = () => {
             <Nav page="addMember" />
             <br />
             {error && <p className='add-member-eorr-ms'>{error}</p>}
+            {msg && <p className='add-member-msg-ms'>{msg}</p>}
+
             <main className='add-member_main'>
                 {/* <div className='add-member_photo-sectoin'>
                         <img className='add-member_main_form_img' src={photoURL} alt="profile-pix" />

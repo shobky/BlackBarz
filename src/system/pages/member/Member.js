@@ -27,54 +27,63 @@ const Member = ({ member }) => {
         return
     }, [])
 
-    const hadlesessionRenwal = () => {
-        updateDoc(doc(db, `members/${member.email}`), {
-            session: 0,
-            lastPaid: {
-                day: date.day,
-                month: date.month,
-                year: date.year
-            }
-        }).then(async () => {
-            const docRef = doc(db, `payments/months/${date.month}`, member.email);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                alert(member.email)
-                updateDoc(doc(db, `payments/months/${date.month}`, member.email), {
-                    lastPaid: {
-                        day: date.day,
-                        month: date.month,
-                        year: date.year
-                    },
-                    plan: member.plan,
-                    fees: increment(Number(member.plan.price))
-                }).then(() => {
-                    console.log('yas')
-                }).catch((err) => {
-                    alert(err.message)
-                })
-            } else {
-                setDoc(doc(db, `payments/months/${date.month}`, member.email), {
-                    name: member.name,
-                    number: member.number,
-                    email: member.email,
-                    mid: member.mid,
-                    plan: member.plan,
-                    fees: member.plan.price,
-                    trainer: member.trainer,
-                    lastPaid: {
-                        day: date.day,
-                        month: date.month,
-                        year: date.year
-                    }
-                }).then(() => {
-                    console.log('yas')
-                }).catch((err) => {
-                    alert(err.message)
-                })
-            }
+    const hadlesessionRenwal = async () => {
+        if (member.lastPaid === null) {
+            updateDoc(doc(db, `members/${member.email}`), {
+                lastPaid: {
+                    day: date.day,
+                    month: date.month,
+                    year: date.year
+                }
+            })
+        } else {
+            updateDoc(doc(db, `members/${member.email}`), {
+                session: 0,
+                lastPaid: {
+                    day: date.day,
+                    month: date.month,
+                    year: date.year
+                }
+            })
+        }
+        const docRef = doc(db, `payments/months/${date.month}`, member.email);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            alert(member.email)
+            updateDoc(doc(db, `payments/months/${date.month}`, member.email), {
+                lastPaid: {
+                    day: date.day,
+                    month: date.month,
+                    year: date.year
+                },
+                plan: member.plan,
+                fees: increment(Number(member.plan.price))
+            }).then(() => {
+                console.log('yas')
+            }).catch((err) => {
+                alert(err.message)
+            })
+        } else {
+            setDoc(doc(db, `payments/months/${date.month}`, member.email), {
+                name: member.name,
+                number: member.number,
+                email: member.email,
+                mid: member.mid,
+                plan: member.plan,
+                fees: member.plan.price,
+                trainer: member.trainer,
+                lastPaid: {
+                    day: date.day,
+                    month: date.month,
+                    year: date.year
+                }
+            }).then(() => {
+                console.log('yas')
+            }).catch((err) => {
+                alert(err.message)
+            })
+        }
 
-        })
     }
 
     return (
@@ -102,7 +111,7 @@ const Member = ({ member }) => {
                     <CheckinBtn member={member} />
                 </div>
                 {
-                    member.session >= member.plan.sessions  ?
+                    member.session >= member.plan.sessions || member.lastPaid == null || member.lastPaid?.month < date?.month ?
                         <button className="member_pay-btn" onClick={() => hadlesessionRenwal()} style={{ cursor: "pointer" }} >Renew</button>
                         : ""
                 }

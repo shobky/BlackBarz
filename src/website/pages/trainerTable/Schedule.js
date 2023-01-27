@@ -69,7 +69,7 @@ const Schedule = () => {
         setEdit(edit === 'show' ? 'edit' : 'show')
 
     }
-
+ 
     return (
         <div className='sch'>
             {
