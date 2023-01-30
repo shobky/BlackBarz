@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, setDoc } from 'firebase/firestore';
 import './addDayWorkout.css'
 import { db } from '../../../firebase/Config';
 import CollectionViewer from '../../../components/viewDayWorkouts/ViewDayWorkotus';
 import Nav from '../../components/nav/Nav';
+import { AiTwotoneDelete } from 'react-icons/ai'
 
 const CollectionEditor = () => {
     const [collectionName, setCollectionName] = useState('gain');
@@ -44,6 +45,10 @@ const CollectionEditor = () => {
             console.error(error);
         }
     };
+    const onDeleteCollectoin = async (id) => {
+        await deleteDoc(doc(db, collectionName, id))
+        // alert(id)
+    }
 
     return (
         <>
@@ -51,13 +56,15 @@ const CollectionEditor = () => {
             <div className='add_workout-page'>
                 <form
                     className='add_workout-form' onSubmit={handleSubmit}>
-                    <label className='add-workout-collection-name'>
-                        Collection Name
-                        <select className='add-workout-collection-select' value={collectionName} onChange={handleCollectionNameChange}>
-                            <option value="gain">Gain</option>
-                            <option value="loss">Loss</option>
-                        </select>
-                    </label>
+                    <div style={{ display: "flex", alignItems: " baseline", gap: "10px" }}>
+                        <label className='add-workout-collection-name'>
+                            Collection Name
+                            <select className='add-workout-collection-select' value={collectionName} onChange={handleCollectionNameChange}>
+                                <option value="gain">Gain</option>
+                                <option value="loss">Loss</option>
+                            </select>
+                        </label>
+                    </div>
                     <div className='add-worktous-form-overFlow'>
 
                         {documents.map((document, index) => (
@@ -98,7 +105,7 @@ const CollectionEditor = () => {
 
 
                 <div className='add-day-workout_view-day-workout'>
-                    <CollectionViewer collectionName={collectionName} />
+                    <CollectionViewer onDeleteCollectoin={onDeleteCollectoin} collectionName={collectionName} />
                 </div>
             </div>
         </>

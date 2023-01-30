@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TrainerTable from '../../components/trainerTable/TrainerTable';
 import './schedule.css'
 import { db } from '../../../firebase/Config';
-import { collection, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import EditTrTable from '../../components/trainerTable/EditTrTable';
 import { BiEditAlt } from 'react-icons/bi'

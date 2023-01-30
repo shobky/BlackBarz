@@ -19,18 +19,18 @@ const UserViewLoss = () => {
             <p className='userView_header'>Loss</p>
             <div className='userView-day-workouts'>
                 <ul className='view-day-workouts-ul'>
-                    {dayWorkoutsData?.map(document => (
-                        <>
+                    {dayWorkoutsData?.map(document, index => (
+                        <div key={index}>
                             <li className='view-day-workout_li' key={document.id}>
                                 <p className='user-view_workou-header'>{document.name}</p>
                                 {
-                                    document.strings.map((str) => (
-                                        <p className='user-view_workou-list'>{str}</p>
+                                    document.strings.map((str, index) => (
+                                        <p key={index} className='user-view_workou-list'>{str}</p>
                                     ))
                                 }
                             </li>
                             <br />
-                        </>
+                        </div>
                     ))}
                 </ul>
             </div>
