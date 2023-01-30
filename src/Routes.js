@@ -19,6 +19,7 @@ import Payments from './system/pages/payments/Payments'
 import AddDayWorkouts from './system/pages/addDayWorkots/AddDayWorkouts'
 import UserView from './website/pages/dayWorkouts/UserView'
 import UserViewLoss from './website/pages/dayWorkouts/UserViewLoss'
+import PrivateRouets from './auth/privateRoutes/PrivateRouets'
 const FinishProfile = React.lazy(() => import("./website/pages/finishProfile/FinishProfile"))
 const Home = React.lazy(() => import("./website/pages/home/Home"))
 const Schedule = React.lazy(() => import('./website/pages/trainerTable/Schedule'))
@@ -39,19 +40,21 @@ const AllRoutes = () => {
 
             {/* ADMIN */}
 
-            <Route path="/dashboard" element={<Dashboard firestoreMembers={firestoreMembers} />} />
-            <Route path="/dashboard/add-day-workouts" element={<AddDayWorkouts />} />
-            <Route path="/dashboard/add-member" element={<AddMember />} />
-            <Route path="/dashboard/find-member" element={<FindMember firestoreMembers={firestoreMembers} />} />
-            <Route path="/dashboard/add-varient" element={<AddVarientsForm />} />
-            <Route path="/dashboard/trainers" element={<FindTrainer />} />
-            <Route path="/dashboard/payments" element={<Payments />} />
+            <Route element={<PrivateRouets />}>
+                <Route path="/dashboard" element={<Dashboard firestoreMembers={firestoreMembers} />} />
+                <Route path="/dashboard/add-day-workouts" element={<AddDayWorkouts />} />
+                <Route path="/dashboard/add-member" element={<AddMember />} />
+                <Route path="/dashboard/find-member" element={<FindMember firestoreMembers={firestoreMembers} />} />
+                <Route path="/dashboard/add-varient" element={<AddVarientsForm />} />
+                <Route path="/dashboard/trainers" element={<FindTrainer />} />
+                <Route path="/dashboard/payments" element={<Payments />} />
 
-            {
-                firestoreMembers?.map((member) => (
-                    <Route key={member.email} path={`/${member.email}`} element={<Member member={member} />} />
-                ))
-            }
+                {
+                    firestoreMembers?.map((member) => (
+                        <Route key={member.email} path={`/${member.email}`} element={<Member member={member} />} />
+                    ))
+                }
+            </Route>
 
             {/* USER */}
             <Route path="/finish-profile" element={<Suspense fallback={<Loading />}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './nav.css'
 import logo from '../../assets/logo.png'
 import { Link, useNavigate } from 'react-router-dom'
@@ -25,7 +25,6 @@ const Nav = ({ active }) => {
         }
     }
 
-
     return (
         <nav className='navigation-container'>
             <div className='nav_header'>
@@ -37,14 +36,14 @@ const Nav = ({ active }) => {
                             {auth?.currentUser?.photoURL ?
                                 <img src={auth?.currentUser?.photoURL}
                                     className='nav_userimg-link' alt="" />
-                                : <CgProfile style={{ color: "white", fontSize:"20px" }} />}
+                                : <CgProfile style={{ color: "white", fontSize: "20px" }} />}
                         </button> : ""
                 }
             </div>
 
             <div id='navMb' className='nav_links-group__inActive nav_links-pc'>
                 {
-                    currentUser?.email === 'shobkyy@gmail.com' ?
+                    currentUser?.uid === 'Ac0cCKWKxUWfaGe2HcHL1LX2TWD2' || currentUser?.uid === 'OqWEn6fJcZNgyLEskceO6RCa1qV2' ?
                         <div className='mb-nav_links-group'>
                             <Link to="/dashboard" className='nav_link'> Dashboard  <RiArrowDropRightLine className='nav_arr-ico' /> </Link>
                             <br className='disnone-pc' />
