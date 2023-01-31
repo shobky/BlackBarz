@@ -43,7 +43,7 @@ const Nav = ({ active }) => {
 
             <div id='navMb' className='nav_links-group__inActive nav_links-pc'>
                 {
-                    currentUser?.uid === 'Ac0cCKWKxUWfaGe2HcHL1LX2TWD2' || currentUser?.uid === 'OqWEn6fJcZNgyLEskceO6RCa1qV2' ?
+                    currentUser?.uid === 'Ac0cCKWKxUWfaGe2HcHL1LX2TWD2' || currentUser?.uid === 'OqWEn6fJcZNgyLEskceO6RCa1qV2' || auth.currentUser.uid === '14ntzuPO1safPwDfmKDrTp2CcQ63' ?
                         <div className='mb-nav_links-group'>
                             <Link to="/dashboard" className='nav_link'> Dashboard  <RiArrowDropRightLine className='nav_arr-ico' /> </Link>
                             <br className='disnone-pc' />
