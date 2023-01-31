@@ -49,6 +49,7 @@ const Member = ({ member }) => {
         const docRef = doc(db, `payments/months/${date.month}`, member.email);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
+            alert('e')
             alert(member.email)
             updateDoc(doc(db, `payments/months/${date.month}`, member.email), {
                 lastPaid: {
@@ -59,7 +60,7 @@ const Member = ({ member }) => {
                 plan: member.plan,
                 fees: increment(Number(member.plan.price))
             }).then(() => {
-                console.log('yas')
+                console.log('exiting member updated')
             }).catch((err) => {
                 alert(err.message)
             })
