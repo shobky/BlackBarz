@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import noprofile from '../../../assets/noprofile.webp'
 import { Link, useNavigate } from 'react-router-dom'
 import CheckinBtn from './CheckinBtn'
@@ -9,19 +9,21 @@ import { GiTwoCoins } from 'react-icons/gi'
 
 
 const Member = ({ member, date }) => {
+    const [pay, setPay] = useState(false)
     const navigate = useNavigate()
-    // const handleRenewalMsg = (mmm) => {
-    //     setHi(mmm)
-    //     document.getElementById('findMemberFilterMsg').classList.remove('find-member_filter_hidden')
-    //     document.getElementById('findMemberFilterMsg').classList.add('find-member_renewal-msg-filter')
 
-    // }
+    useEffect(() => {
+        const startDate = new Date(`${member.lastPaid.year}-${member.lastPaid.month}-${member.lastPaid.day}`);
+        const endDate = new Date();
+        const diffInMs = endDate - startDate;
+        const diffInDays = diffInMs / 1000 / 60 / 60 / 24;
+        if (diffInDays >= 30) {
+            setPay(true)
+        } else {
+            console.log("30 days have not passed");
+        }
 
-    // const onCloseRenwalMsg = () => {
-    //     document.getElementById('findMemberFilterMsg').classList.remove('find-member_renewal-msg-filter')
-    //     document.getElementById('findMemberFilterMsg').classList.add('find-member_filter_hidden')
-
-    // }
+    }, [member])
 
     return (
         <li className='find-member-ul-li'>
@@ -66,7 +68,7 @@ const Member = ({ member, date }) => {
                 }</p>
             <CheckinBtn key={member.mid} member={member} />
             {
-                member.session >= member.plan.sessions || member.lastPaid == null || member.lastPaid?.month < date.month ?
+                member.session >= member.plan.sessions || member.lastPaid == null || pay ?
                     <button onClick={() => navigate(`/${member.email}`)} style={{ cursor: "pointer" }} className="find-member_payment-action"><GiTwoCoins /></button>
                     :
                     <button className="find-member_payment-action__disabled"><GiTwoCoins /></button>

@@ -65,8 +65,9 @@ const AddMember = () => {
     const [plan, setPlan] = useState('12');
     const [Trainer, setTrainer] = useState('0');
     const [workType, setWorkType] = useState('0');
-    const { city } = useAuth()
+    const [currentdate, setCurrentDate] = useState()
 
+    
 
     const [selectedPlan, setSelectedPlan] = useState('');
 
@@ -132,6 +133,7 @@ const AddMember = () => {
             setMsDay(currentdate.getDate())
             setMsMonth(currentdate.getMonth() + 1)
             setMsYear(currentdate.getFullYear())
+            setCurrentDate(currentdate)
         }
         getdate()
         return

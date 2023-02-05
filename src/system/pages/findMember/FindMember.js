@@ -15,6 +15,7 @@ const FindMember = ({ firestoreMembers, isClub }) => {
     const [msMonth, setMsMonth] = useState()
     const [msYear, setMsYear] = useState()
 
+
     useEffect(() => {
         const getdate = () => {
             const currentdate = new Date();
@@ -133,7 +134,7 @@ const FindMember = ({ firestoreMembers, isClub }) => {
                                         month: msMonth,
                                         year: msYear
                                     }}
-                                    />
+                                />
                             ))
                         }
                     </ul>
