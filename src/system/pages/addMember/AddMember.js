@@ -62,7 +62,6 @@ const AddMember = () => {
     const [name, setName] = useState('')
 
     const [payment, setPayment] = useState('full');
-    const [plan, setPlan] = useState('12');
     const [Trainer, setTrainer] = useState('0');
     const [workType, setWorkType] = useState('0');
     const [currentdate, setCurrentDate] = useState()
@@ -88,39 +87,6 @@ const AddMember = () => {
         const selectedPlan = firestorePlans?.find((plan) => plan.name === selectedPlanName);
         setSelectedPlan(selectedPlan);
     };
-
-    // const handleChangePlan = (event) => {
-    //     setPlan(event.target.value);
-    // };
-
-    // const handleChangeCity = (event) => {
-    //     const {
-    //         target: { value },
-    //     } = event;
-    //     setCity(
-    //         // On autofill we get a stringified value.
-    //         typeof value === 'string' ? value.split(',') : value,
-    //     );
-    // };
-
-    // const handleChangeDays = (event) => {
-    //     const {
-    //         target: { value },
-    //     } = event;
-    //     setDays(
-    //         // On autofill we get a stringified value.
-    //         typeof value === 'string' ? value.split(',') : value,
-    //     );
-    // };
-    // const handleChangeHours = (event) => {
-    //     const {
-    //         target: { value },
-    //     } = event;
-    //     setHours(
-    //         // On autofill we get a stringified hours.
-    //         typeof value === 'string' ? value.split(',') : value,
-    //     );
-    // };
 
     useEffect(() => {
         setMemberId(uuidv4().slice(0, 4))
@@ -205,14 +171,6 @@ const AddMember = () => {
             {msg && <p className='add-member-msg-ms'>{msg}</p>}
 
             <main className='add-member_main'>
-                {/* <div className='add-member_photo-sectoin'>
-                        <img className='add-member_main_form_img' src={photoURL} alt="profile-pix" />
-                        <input onChange={(e) => handleImgChange(e.target.files[0])} className='add-member_change-photo-input' type='file' />
-                        <FiEdit className='add-member_change-photo_ico' />
-                        <p className='add-member_main_form-error'>{error && error}</p>
-                        <p className='add-member_main_form-msg'>{msg && msg}</p>
-
-                    </div> */}
                 <form>
                     <p className='add-member_main_form_mid'>Member Id,  <span>#{memberID}</span></p>
                     <Box
@@ -272,70 +230,6 @@ const AddMember = () => {
                             </Select>
                         </FormControl>
 
-                        {/* <FormControl style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
-                            <TextField required onChange={(e) => setWeight(e.target.value)} sx={{ width: ' 20ch' }} id="outlined-basic" label="Weight" variant="outlined" />
-                            <TextField required onChange={(e) => setHeight(e.target.value)} id="outlined-basic" label="Height" variant="outlined" />
-                        </FormControl> */}
-
-                        {/* <div style={{ display: 'flex', flexDirection: "row", gap: " 10px" }}>
-                            <FormControl sx={{ width: '17ch' }}>
-                                <InputLabel htmlFor="grouped-native-select">City</InputLabel>
-                                <Select
-                                    required
-                                    labelId="demo-simple-select-helper-label"
-                                    id="demo-simple-select-helper"
-                                    value={city}
-                                    label="City"
-                                    onChange={handleChangeCity}>
-                                    <MenuItem value={'Portsaid'}> Portsaid </MenuItem>
-                                    <MenuItem value={'Portfouad'}> Portfouad </MenuItem>
-                                </Select>
-                            </FormControl>
-                            <FormControl sx={{ width: '25ch' }}>
-                                <InputLabel id="demo-multiple-checkbox-label">Days</InputLabel>
-                                <Select
-                                    required
-                                    labelId="demo-multiple-checkbox-label"
-                                    id="demo-multiple-checkbox"
-                                    multiple
-                                    value={days}
-                                    onChange={handleChangeDays}
-                                    input={<OutlinedInput label="Days" />}
-                                    renderValue={(selected) => selected.join(', ')}
-                                    MenuProps={MenuProps}
-                                >
-                                    {daysLs.map((day) => (
-                                        <MenuItem key={day} value={day}>
-                                            <Checkbox checked={days.indexOf(day) > -1} />
-                                            <ListItemText primary={day} />
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                            <FormControl sx={{ width: '18ch' }}>
-                                <InputLabel htmlFor="grouped-select">Time</InputLabel>
-                                <Select
-                                    required
-                                    labelId="demo-multiple-checkbox-label"
-                                    id="demo-multiple-checkbox"
-                                    multiple
-                                    value={hours}
-                                    onChange={handleChangeHours}
-                                    input={<OutlinedInput label="Time" />}
-                                    renderValue={(selected) => selected.join(', ')}
-                                    MenuProps={MenuProps}
-                                >
-                                    {hoursLs.map((hour) => (
-                                        <MenuItem key={hour} value={hour}>
-                                            <Checkbox checked={hours.indexOf(hour) > -1} />
-                                            <ListItemText primary={hour} />
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-
-                        </div> */}
-
                     </Box>
 
 
@@ -379,29 +273,3 @@ const AddMember = () => {
 }
 
 export default AddMember
-
-
-
-
-{/* <RadioGroup
-required
-aria-labelledby="demo-controlled-radio-buttons-group"
-name="controlled-radio-buttons-group"
-value={plan}
-onChange={handleChangePlan}
-
->
-<div style={{ display: "flex" }}>
-    {
-        firestorePlans?.map((firestorePlan, index) => (
-            <div className='add-members_plans' key={index}>
-                <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value={firestorePlan.type} control={<Radio />} label={firestorePlan.type} />
-                <p className='add-members_plan-price'>{firestorePlan.price}l.e</p>
-            </div>
-        ))
-    }
-   
-</div>
-</RadioGroup> */}
-{/* <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="12" control={<Radio />} label="12" />
-    <FormControlLabel sx={{ color: "black", fontWeight: "bold" }} value="24" control={<Radio />} label="24" /> */}

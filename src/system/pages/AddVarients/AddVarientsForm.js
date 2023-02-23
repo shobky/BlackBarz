@@ -83,7 +83,7 @@ const AddVarientsForm = () => {
                                                 <p>Name : {varientDb.name}</p>
                                                 <p>Sessions : {varientDb.sessions}</p>
                                                 <p>Price : {varientDb.price ?? ""}</p>
-                                                <button className='dashboard_plnas_var-delete-btn' type='button' onClick={() => deleteDoc(doc(db, `plans/${varientDb.type}`))}><AiFillDelete className='dashboard_plnas_var-delete' /></button>
+                                                <button className='dashboard_plnas_var-delete-btn' type='button' onClick={() => deleteDoc(doc(db, `plans/${varientDb.name}`))}><AiFillDelete className='dashboard_plnas_var-delete' /></button>
                                             </div>
                                             <br />
                                         </div> :

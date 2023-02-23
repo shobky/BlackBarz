@@ -69,6 +69,16 @@ const Nav = ({ active }) => {
                         </div>
                     </>
                 }
+                   {window.innerWidth > 800 &&
+                    <>
+                        <div style={{ margin: '0 5px', zIndex:'99' }}>
+                            <Link to='/workouts-gain' className={active === 'gain' ? 'nav_link__active' : "nav_link "}>Gain <RiArrowDropRightLine className='nav_arr-ico' /></Link>
+                            <br/>
+                            <Link to='/workouts-loss' className={active === 'loss' ? 'nav_link__active' : "nav_link "}>Loss <RiArrowDropRightLine className='nav_arr-ico' /></Link>
+                        </div>
+                    </>
+                }
+
 
 
 

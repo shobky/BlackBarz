@@ -12,6 +12,7 @@ const UserView = () => {
     const dayWorkoutsq = collection(db, 'gain')
     const [dayWorkoutsData] = useCollectionData(dayWorkoutsq)
 
+    console.log(dayWorkoutsData)
 
     return (
         <div>
@@ -19,13 +20,13 @@ const UserView = () => {
             <p className='userView_header'>Gain</p>
             <div className='userView-day-workouts'>
                 <ul className='view-day-workouts-ul'>
-                    {dayWorkoutsData?.map(document, index => (
+                    {dayWorkoutsData?.map((document, index) => (
                         <div key={index}>
-                            <li className='view-day-workout_li' key={document.id}>
+                            <li className='view-day-workout_li' key={index}>
                                 <p className='user-view_workou-header'>{document.name}
                                 </p>
                                 {
-                                    document.strings.map((str, index) => (
+                                    document?.strings?.map((str, index) => (
                                         <p key={index} className='user-view_workou-list'>{str}</p>
                                     ))
                                 }
